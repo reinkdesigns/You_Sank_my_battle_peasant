@@ -1,2 +1,5 @@
+00.0000.0001
+added wild magic, manipulates location placement for attacks
+
 00.0000.0000
 day 1 10/8/26
