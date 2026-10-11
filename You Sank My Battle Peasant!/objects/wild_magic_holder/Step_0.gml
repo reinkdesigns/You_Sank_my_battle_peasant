@@ -1,0 +1,2 @@
+_x += (keyboard_check_pressed(ord("D"))-keyboard_check_pressed(ord("A")))*sprite_get_width(sprite_index)
+_y += (keyboard_check_pressed(ord("S"))-keyboard_check_pressed(ord("W")))*sprite_get_height(sprite_index)

@@ -13,6 +13,11 @@ enum wild_magic
 	shrink,
 	enlarge,
 	wind_N,
+
+	COUNT
+}
+global.max_wildmagic = wild_magic.COUNT
+/*
 	wind_NE,
 	wind_E,
 	wind_SE,
@@ -20,6 +25,4 @@ enum wild_magic
 	wind_SW,
 	wind_W,
 	wind_NW,
-	COUNT
-}
-global.max_wildmagic = wild_magic.COUNT
+*/
