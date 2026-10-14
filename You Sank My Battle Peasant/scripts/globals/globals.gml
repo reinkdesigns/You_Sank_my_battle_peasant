@@ -61,7 +61,7 @@ global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]
 
 
 
-function UnitData(_unit, _overrides = {})
+function UnitData(_unit, _overrides = {}) constructor
 {
     return {
         hp          : variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100,
@@ -213,7 +213,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		float		: true,
-    }),			
+    })
 		
 		
 		
