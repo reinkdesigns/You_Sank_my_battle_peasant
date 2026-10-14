@@ -1,3 +1,7 @@
+00.0000.0002
+added unit and chest sprites
+started work on unit constructor
+
 00.0000.0001
 added wild magic, manipulates location placement for attacks
 

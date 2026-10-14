@@ -28,8 +28,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"armored axeman",
-    "path":"folders/Sprites/units/armored axeman.yy",
+    "name":"Armored axeman",
+    "path":"folders/Sprites/units/Armored axeman.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

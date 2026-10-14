@@ -36,8 +36,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"archer",
-    "path":"folders/Sprites/units/archer.yy",
+    "name":"Archer",
+    "path":"folders/Sprites/units/Archer.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
