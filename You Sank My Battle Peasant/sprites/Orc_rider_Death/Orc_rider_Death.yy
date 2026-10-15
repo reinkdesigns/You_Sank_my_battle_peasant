@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"Orc_rider_Death",
+  "%Name":"Orc_Rider_Death",
   "bboxMode":0,
   "bbox_bottom":59,
   "bbox_left":28,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"d60318f6-f06e-49b9-9b2a-cb54f266d57f","blendMode":0,"displayName":"default","isLocked":false,"name":"d60318f6-f06e-49b9-9b2a-cb54f266d57f","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"Orc_rider_Death",
+  "name":"Orc_Rider_Death",
   "nineSlice":null,
   "origin":4,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"Orc_rider_Death",
+    "%Name":"Orc_Rider_Death",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"Orc_rider_Death",
+    "name":"Orc_Rider_Death",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ae9da9a2-4f29-420c-8297-4d184c6d18bc","path":"sprites/Orc_rider_Death/Orc_rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ae9da9a2-4f29-420c-8297-4d184c6d18bc","path":"sprites/Orc_Rider_Death/Orc_Rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"374308a1-549e-467d-be31-0de2b7dc5eb9","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"bcddbbac-77ab-4c54-a72c-cf33ec8b6148","path":"sprites/Orc_rider_Death/Orc_rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"bcddbbac-77ab-4c54-a72c-cf33ec8b6148","path":"sprites/Orc_Rider_Death/Orc_Rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6136f218-b214-4a04-b1c7-b1318a01332c","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d92cece8-811b-457b-bd87-b3143f824a04","path":"sprites/Orc_rider_Death/Orc_rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d92cece8-811b-457b-bd87-b3143f824a04","path":"sprites/Orc_Rider_Death/Orc_Rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"bfd52fc2-3b9f-4a73-aa26-ae95aaea5e3c","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"85292898-9cd2-416c-ae6e-bba7d5e6852f","path":"sprites/Orc_rider_Death/Orc_rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"85292898-9cd2-416c-ae6e-bba7d5e6852f","path":"sprites/Orc_Rider_Death/Orc_Rider_Death.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"d826c530-6d94-4639-83db-05a72fba862d","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

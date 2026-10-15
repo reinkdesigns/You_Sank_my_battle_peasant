@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"Orc_rider_Block",
+  "%Name":"Orc_Rider_Block",
   "bboxMode":0,
   "bbox_bottom":59,
   "bbox_left":37,
@@ -24,7 +24,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"3a359295-8d00-4a4e-812e-9ccccdb315ef","blendMode":0,"displayName":"default","isLocked":false,"name":"3a359295-8d00-4a4e-812e-9ccccdb315ef","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"Orc_rider_Block",
+  "name":"Orc_Rider_Block",
   "nineSlice":null,
   "origin":4,
   "parent":{
@@ -36,7 +36,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"Orc_rider_Block",
+    "%Name":"Orc_Rider_Block",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -60,7 +60,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"Orc_rider_Block",
+    "name":"Orc_Rider_Block",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -72,16 +72,16 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b44e78c2-2732-4016-8b71-c4cc30023c28","path":"sprites/Orc_rider_Block/Orc_rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"b44e78c2-2732-4016-8b71-c4cc30023c28","path":"sprites/Orc_Rider_Block/Orc_Rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"07f25828-ebeb-4c1a-b329-353ce16a6439","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a90227e4-3ddd-4a23-9f77-3e623ed6d771","path":"sprites/Orc_rider_Block/Orc_rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a90227e4-3ddd-4a23-9f77-3e623ed6d771","path":"sprites/Orc_Rider_Block/Orc_Rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"e336f09a-941d-4bd9-9c91-d964b21603c4","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6274c212-098c-41f0-a3b2-75cef3a7cf33","path":"sprites/Orc_rider_Block/Orc_rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6274c212-098c-41f0-a3b2-75cef3a7cf33","path":"sprites/Orc_Rider_Block/Orc_Rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"f84ce0ab-399e-42fb-b05f-311c4e52ee7f","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ab3eb7b0-d800-40f2-a67d-b184f78379a4","path":"sprites/Orc_rider_Block/Orc_rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"ab3eb7b0-d800-40f2-a67d-b184f78379a4","path":"sprites/Orc_Rider_Block/Orc_Rider_Block.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"2b7dee9d-20d2-4b2b-8670-f60fb85d194b","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],

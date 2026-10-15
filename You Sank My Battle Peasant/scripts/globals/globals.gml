@@ -1,4 +1,6 @@
 
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 
 random_set_seed(randomise())
 window_enable_borderless_fullscreen(true)
@@ -12,47 +14,47 @@ global.chest_type = ["WoodenChest_","IronChest_","GoldenChest_"]
 global.chest_state = ["Idle","Open"]
 
 global.unit_type		=[
-	"Archer_",
-	"Armored_Axeman_",
-	"Armored_Orc_",
-	"Armored_Skeleton_",
-	"Bat_",
-	"Black_Knight_A_",
-	"Black_Knight_B_",
-	"Black_Knight_C_",
-	"Blood_monster_",
-	"Demon_A_",
-	"Demon_B_",
-	"Demon_C_",
-	"Demon_D_",
-	"Demon_E_",
-	"Demoness_A_",
-	"Demoness_B_",
-	"Elite_Orc_",
-	"Eyeball_Monster_",
-	"Flame_Golem_",
-	"Ghostfire_",
-	"Greatsword_Skeleton_",
-	"Hellbat_",
-	"Hellhound_",
-	"Knight_",
-	"Knight_Templar_",
-	"Lancer_",
-	"Lava_Slime_",
-	"Minotaur_",
-	"Necromancer_",
-	"Orc_",
-	"Orc_Rider_",
-	"Priest_",
-	"Skeleton_",
-	"Skeleton_Archer_",
-	"Slime_",
-	"Soldier_",
-	"Swordsman_",
-	"Warlock_",
-	"Werebear_",
-	"Werewolf_",
-	"Wizard_",
+	"Archer",
+	"Armored_Axeman",
+	"Armored_Orc",
+	"Armored_Skeleton",
+	"Bat",
+	"Black_Knight_A",
+	"Black_Knight_B",
+	"Black_Knight_C",
+	"Blood_Monster",
+	"Demon_A",
+	"Demon_B",
+	"Demon_C",
+	"Demon_D",
+	"Demon_E",
+	"Demoness_A",
+	"Demoness_B",
+	"Elite_Orc",
+	"Eyeball_Monster",
+	"Flame_Golem",
+	"Ghostfire",
+	"Greatsword_Skeleton",
+	"Hellbat",
+	"Hellhound",
+	"Knight",
+	"Knight_Templar",
+	"Lancer",
+	"Lava_Slime",
+	"Minotaur",	
+	"Necromancer",
+	"Orc",
+	"Orc_Rider",
+	"Priest",
+	"Skeleton",
+	"Skeleton_Archer",
+	"Slime",
+	"Soldier",
+	"Swordsman",
+	"Warlock",
+	"Werebear",
+	"Werewolf",
+	"Wizard",
 	]
 
 
@@ -63,21 +65,20 @@ global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]
 
 function UnitData(_unit, _overrides = {}) constructor
 {
-    return {
-        hp          : variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100,
-        mp          : variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100,
-        can_cast    : variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false,
-        can_block   : variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false,
-        is_summon   : variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false,
-        is_ranged      : variable_struct_exists(_overrides, "ranged") ? _overrides.ranged : false,
-        range      : variable_struct_exists(_overrides, "ranged") ? _overrides.ranged : false,
-        unit        : _unit+"_",
-        special     : variable_struct_exists(_overrides, "special") ? _overrides.special : false,
-        special2     : variable_struct_exists(_overrides, "special") ? _overrides.special : false,
-        float       : variable_struct_exists(_overrides, "float") ? _overrides.float : false,
-        description : variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text"
-    };
+    hp          = variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100;
+    mp          = variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100;
+    can_cast    = variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false;
+    can_block   = variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false;
+    is_summon   = variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false;
+    is_ranged   = variable_struct_exists(_overrides, "is_ranged") ? _overrides.is_ranged : false;
+    range       = variable_struct_exists(_overrides, "range") ? _overrides.range : false;
+    unit        = _unit + "_";
+    special     = variable_struct_exists(_overrides, "special") ? _overrides.special : false;
+    special2    = variable_struct_exists(_overrides, "special2") ? _overrides.special2 : false;
+    float       = variable_struct_exists(_overrides, "float") ? _overrides.float : false;
+    description = variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text";
 }
+
 
 
 
@@ -107,6 +108,12 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		is_summon	: true,
+    }),
+	
+	Bat : new UnitData("Bat", {
+		hp			: 100,
+		mp			: 100,
+		float		: true,
     }),
 	
 	Black_Knight_A : new UnitData("Black_Knight_A", {
@@ -213,9 +220,126 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		float		: true,
-    })
+    }),
+	
+	Hellhound : new UnitData("Hellhound", {
+		hp			: 100,
+		mp			: 100,
+    }),
+	
+	Knight : new UnitData("Knight", {
+		hp			: 100,
+		mp			: 100,
+		can_block	: true,
+    }),
 		
-		
-		
+	Knight_Templar : new UnitData("Knight_Templar", {
+		hp			: 100,
+		mp			: 100,
+		can_block	: true,
+    }),	
+	
+	Lancer : new UnitData("Lancer", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Lava_Slime : new UnitData("Lava_Slime", {
+		hp			: 100,
+		mp			: 100,
+    }),		
+	
+	Minotaur : new UnitData("Minotaur", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Necromancer : new UnitData("Necromancer", {
+		hp			: 100,
+		mp			: 100,
+		can_cast	: "Attack02",
+		special		: Necromancer_Attack_Effect,
+    }),	
+	
+	Orc : new UnitData("Orc", {
+		hp			: 100,
+		mp			: 100,
+    }),		
+	
+	Orc_Rider : new UnitData("Orc_Rider", {
+		hp			: 100,
+		mp			: 100,
+		can_block	: true,
+    }),		
 
+	Priest : new UnitData("Priest", {
+		hp			: 100,
+		mp			: 100,
+		can_cast	: "Both",
+		range		: "Long",
+		special		: Priest_Attack_effect,
+		special2	: Priest_Heal_effect,
+    }),		
+	
+	Skeleton : new UnitData("Skeleton", {
+		hp			: 100,
+		mp			: 100,
+		can_block	: true,
+		is_summon	: true,
+    }),	
+	
+	Skeleton_Archer : new UnitData("Skeleton_Archer", {
+		hp			: 100,
+		mp			: 100,
+		is_ranged	: "Both",
+		range		: "Long",
+		special		: Arrow03,
+		special2 	: Arrow01,
+		is_summon	: true,
+    }),	
+	
+	Slime : new UnitData("Slime", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Soldier : new UnitData("Soldier", {
+		hp			: 100,
+		mp			: 100,
+    }),		
+	
+	Swordsman : new UnitData("Swordsman", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Warlock : new UnitData("Warlock", {
+		hp			: 100,
+		mp			: 100,
+		can_cast	: "Both",
+		range		: "Long",
+		special		: Warlock_Effect,
+		special2	: Black_Knight_Beam,
+    }),	
+	
+	Werebear : new UnitData("Werebear", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Werewolf : new UnitData("Werewolf", {
+		hp			: 100,
+		mp			: 100,
+    }),	
+	
+	Wizard : new UnitData("Wizard", {
+		hp			: 100,
+		mp			: 100,
+		can_cast	: "Both",
+		range		: "Long",
+		special		: Wizard_Firebolt_Effect,
+		special2	: Wizard_Ice_Effect,
+    }),	
+	
 }
+

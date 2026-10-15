@@ -1,6 +1,6 @@
 {
   "$GMSprite":"v2",
-  "%Name":"Orc_rider_Idle",
+  "%Name":"Orc_Rider_Idle",
   "bboxMode":0,
   "bbox_bottom":59,
   "bbox_left":37,
@@ -26,7 +26,7 @@
   "layers":[
     {"$GMImageLayer":"","%Name":"53eaaba7-5fc9-4d1a-9a7a-b3234bcf6bb1","blendMode":0,"displayName":"default","isLocked":false,"name":"53eaaba7-5fc9-4d1a-9a7a-b3234bcf6bb1","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
-  "name":"Orc_rider_Idle",
+  "name":"Orc_Rider_Idle",
   "nineSlice":null,
   "origin":4,
   "parent":{
@@ -38,7 +38,7 @@
   "resourceVersion":"2.0",
   "sequence":{
     "$GMSequence":"v1",
-    "%Name":"Orc_rider_Idle",
+    "%Name":"Orc_Rider_Idle",
     "autoRecord":true,
     "backdropHeight":768,
     "backdropImageOpacity":0.5,
@@ -62,7 +62,7 @@
       "resourceType":"KeyframeStore<MomentsEventKeyframe>",
       "resourceVersion":"2.0",
     },
-    "name":"Orc_rider_Idle",
+    "name":"Orc_Rider_Idle",
     "playback":1,
     "playbackSpeed":30.0,
     "playbackSpeedType":0,
@@ -74,22 +74,22 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d0ecba7f-b501-41ae-bc97-6d13ebe0723d","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d0ecba7f-b501-41ae-bc97-6d13ebe0723d","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"99ec3805-fed7-4335-9304-f32d06d36225","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6ba8ea42-4cd7-4b9f-8b90-62ce53738c5f","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"6ba8ea42-4cd7-4b9f-8b90-62ce53738c5f","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"2b064067-55fa-4c60-b80a-9d322e9282a6","IsCreationKey":false,"Key":1.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"af99a800-2bfb-4038-b008-3a64a0dd48c7","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"af99a800-2bfb-4038-b008-3a64a0dd48c7","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"eec3d37f-dc79-485d-a092-ca4a3681b401","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d4ce9db7-1013-407f-8e97-8987bd1cf87f","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d4ce9db7-1013-407f-8e97-8987bd1cf87f","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"b47b272b-c28b-4e1b-bbcf-837be24b6eae","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"36dc55b6-1ef0-4d59-9309-5128282d413e","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"36dc55b6-1ef0-4d59-9309-5128282d413e","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"a590272c-7a22-4c5e-93e9-2ed0b075f2da","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4a8a41ee-6ef4-4d78-8e65-1c7db74cfe63","path":"sprites/Orc_rider_Idle/Orc_rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4a8a41ee-6ef4-4d78-8e65-1c7db74cfe63","path":"sprites/Orc_Rider_Idle/Orc_Rider_Idle.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"6d72fdc5-3046-4e2a-a185-b747dc951f8d","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
