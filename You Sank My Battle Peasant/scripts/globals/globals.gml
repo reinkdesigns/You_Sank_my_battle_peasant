@@ -1,10 +1,25 @@
-
+#macro diag_mod 0.707
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
 random_set_seed(randomise())
 window_enable_borderless_fullscreen(true)
 window_set_fullscreen(true)
+
+global.spell_field = {
+	x1 : 185,
+	y1 : 265,
+	x2 : 775,
+	y2 : 890
+
+}
+
+global.enemy_field = {
+	x1 : 1145,
+	y1 : 265,
+	x2 : 1735,
+	y2 : 890
+}
 
 global.directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 global.wind_direction = 0

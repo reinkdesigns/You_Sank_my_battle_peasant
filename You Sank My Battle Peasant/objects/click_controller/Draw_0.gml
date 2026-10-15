@@ -9,17 +9,17 @@ draw_rectangle(
 
 
 draw_rectangle(
-	_place_x1,
-	_place_y1,
-	_place_x2,
-	_place_y2,
+	global.spell_field.x1,
+	global.spell_field.y1,
+	global.spell_field.x2,
+	global.spell_field.y2,
 	true)
 	
 draw_rectangle(
-	_target_x1,
-	_target_y1,
-	_target_x2,
-	_target_y2,
+	global.enemy_field.x1,
+	global.enemy_field.y1,
+	global.enemy_field.x2,
+	global.enemy_field.y2,
 	true)
 
 

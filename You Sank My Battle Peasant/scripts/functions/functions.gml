@@ -1,25 +1,14 @@
 function warp_placement(_x, _y, _x_offset, _y_offset, _wild_magic, _wind_shunt = 10)
 {
-    // Placement field bounds
-    var _place_x1 = 185;
-    var _place_y1 = 265;
-    var _place_x2 = 775;
-    var _place_y2 = 890;
 
-    // Target field bounds
-    var _target_x1 = 1145;
-    var _target_y1 = 265;
-    var _target_x2 = 1735;
-    var _target_y2 = 890;
-
-    var _place_w = _place_x2 - _place_x1;
-    var _place_h = _place_y2 - _place_y1;
-    var _target_w = _target_x2 - _target_x1;
-    var _target_h = _target_y2 - _target_y1;
+    var _place_w = global.spell_field.x2 - global.spell_field.x1;
+    var _place_h = global.spell_field.y2 - global.spell_field.y1;
+    var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
+    var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
 
     // Normalize center coordinates
-    var _u = (_x - _place_x1) / _place_w;
-    var _v = (_y - _place_y1) / _place_h;
+    var _u = (_x - global.spell_field.x1) / _place_w;
+    var _v = (_y - global.spell_field.y1) / _place_h;
 
     // Normalize spell offsets
     var _uw = _x_offset / _place_w;
@@ -95,8 +84,8 @@ function warp_placement(_x, _y, _x_offset, _y_offset, _wild_magic, _wind_shunt =
     }
 
     // Convert center to target coordinates
-    var _result_x = _target_x1 + _u * _target_w;
-    var _result_y = _target_y1 + _v * _target_h;
+    var _result_x = global.enemy_field.x1 + _u * _target_w;
+    var _result_y = global.enemy_field.y1 + _v * _target_h;
 
     // Convert offsets to target dimensions
     var _result_x_offset = _uw * _target_w;

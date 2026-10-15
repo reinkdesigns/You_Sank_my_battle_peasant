@@ -1,3 +1,7 @@
+00.0000.0003
+added movement logic
+finished construction and added units and attacks and other animations
+
 00.0000.0002
 added unit and chest sprites
 started work on unit constructor

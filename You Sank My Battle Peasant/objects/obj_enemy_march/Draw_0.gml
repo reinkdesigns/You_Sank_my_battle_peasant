@@ -12,3 +12,5 @@ c_white,
 )
 
 draw_text(x,y-100,global.unit_type[monster])
+
+draw_line(x,y,dest_x,dest_y)
