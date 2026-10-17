@@ -4,6 +4,12 @@ if _w _wild = (_wild + 1) mod global.max_wildmagic;
 var _s = keyboard_check_pressed(ord("S"))
 if _s _wild = 0
 
+if keyboard_check_pressed(ord("Y")) {
+var _unit = irandom(array_length(global.unit_type)-1)
+summon_unit(_unit)
+
+}
+
 
 _mouse_over = (point_in_rectangle(mouse_x, mouse_y, global.spell_field.x1, global.spell_field.y1, global.spell_field.x2, global.spell_field.y2))
 

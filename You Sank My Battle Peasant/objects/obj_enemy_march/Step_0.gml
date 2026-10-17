@@ -28,38 +28,11 @@ if (_distance <= _speed) {
 }
 
 // 4. Spacebar Random Destination Selection
-if (keyboard_check_pressed(vk_space)) {
-    // 1. Calculate the padding (Half the sprite size + buffer)
-    var _pad_x = (sprite_width / 2) + field_buffer;
-    var _pad_y = (sprite_height / 2) + field_buffer;
-    
-    // 2. Shrink the random ranges inward so the unit can't hang out
-    var _min_x = global.enemy_field.x1 + _pad_x;
-    var _max_x = global.enemy_field.x2 - _pad_x;
-    
-    var _min_y = global.enemy_field.y1 + _pad_y;
-    var _max_y = global.enemy_field.y2 - _pad_y;
-    
-    // 3. Pick a completely random target point inside the safe boundaries
-    var _target_x = irandom_range(_min_x, _max_x);
-    var _target_y = irandom_range(_min_y, _max_y);
-    
-    // 4. Check how far away that chosen point is
-    var _dist = point_distance(x, y, _target_x, _target_y);
-    
-    if (_dist <= max_distance) {
-        // If it's within range, use it directly!
-        dest_x = _target_x;
-        dest_y = _target_y;
-    } else {
-        // If it's too far, get the direction to that point...
-        var _dir = point_direction(x, y, _target_x, _target_y);
-        
-        // ...and set the destination exactly "max_distance" units away!
-        dest_x = x + lengthdir_x(max_distance, _dir);
-        dest_y = y + lengthdir_y(max_distance, _dir);
-    }
-}
+if (keyboard_check_pressed(vk_space)) march()
+if (keyboard_check_pressed(ord("T"))) attack()
+	//in order from 1-10 check unit within 5px of march posistion
+	//check the posistion they want to move to, if its free move foward, else do nothing
+	//this will be a function call elseware, probably a .method
 
 
 _x = x
@@ -79,7 +52,10 @@ if moved{
 
 
 if keyboard_check_pressed(ord("1")) count = 2
-if keyboard_check_pressed(ord("2")) count = 3
+if keyboard_check_pressed(ord("2")) {
+	count = 3
+	child_unit.count = 3
+}
 
 if keyboard_check_pressed(ord("Q")) count = 4
 if keyboard_check_pressed(ord("E")) count = 5
@@ -90,8 +66,12 @@ if count !=3 image_speed = 0.5
 
 if count != last_count {
 image_index = 0
+child_unit.image_index = 0
 last_count = count
 
+
 }
+
+//child_unit.count = count
 
 //global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]

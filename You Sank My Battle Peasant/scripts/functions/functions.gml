@@ -139,6 +139,12 @@ function warp_placement(_x, _y, _x_offset, _y_offset, _wild_magic, _wind_shunt =
     ];
 }
 
+
+function summon_unit(_unit){
+var _peasant = instance_create_layer(x,y,"March",obj_enemy_march)
+_peasant.monster = _unit
+}
+
 function report_message(_txt,type=0){
 if type show_debug_message(_txt)
 else show_message(_txt)

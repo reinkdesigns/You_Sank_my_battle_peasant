@@ -1,7 +1,9 @@
 {
   "$GMObject":"",
   "%Name":"obj_player_avatar",
-  "eventList":[],
+  "eventList":[
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+  ],
   "managed":true,
   "name":"obj_player_avatar",
   "overriddenProperties":[],
@@ -27,7 +29,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"Archer_Idle",
+    "path":"sprites/Archer_Idle/Archer_Idle.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }
