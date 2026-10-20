@@ -14,3 +14,9 @@
     y = irandom_range(_min_y, _max_y);
 	dest_x=x
 	dest_y=y
+	
+	_unit = global.unit_type[monster]
+	_struct_unit = global.unit[$ _unit]
+	
+	max_distance = _struct_unit.field_movement
+	

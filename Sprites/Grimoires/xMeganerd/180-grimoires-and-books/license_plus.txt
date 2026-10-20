@@ -1,0 +1,123 @@
+180 Grimoires and Books Plus Pack
+
+By purchasing, copying, modifying, or using the Assets, you ("Licensee", "you", or "your") agree to the terms of this License.
+
+1. GRANT OF LICENSE
+
+Subject to the terms of this License, Seller grants you a non-exclusive, worldwide, perpetual license to use the Assets in video games, software, applications, websites, promotional materials, asset packs, art packs, derivative works, and related media.
+
+This is a license to use the Assets. Ownership of the original, unmodified Assets remains with Seller.
+
+2. ALLOWED USES
+
+You may:
+
+a. Use the Assets in personal, commercial, or client projects.
+
+b. Use the Assets in free or paid video games.
+
+c. Modify, recolor, resize, edit, animate, combine, transform, or otherwise adapt the Assets.
+
+d. Sell, license, or distribute modified versions of the Assets, provided that the original Asset files are not included as-is.
+
+e. Use modified versions of the Assets in asset packs, sprite packs, art packs, tilesets, icon packs, game projects, software, websites, and other media.
+
+f. Use the Assets in screenshots, trailers, advertisements, websites, store pages, social media posts, devlogs, and other promotional material.
+
+g. Distribute the Assets as part of a compiled, packaged, or exported game or application.
+
+h. Use the Assets in game engines, including but not limited to Unity, Unreal Engine, Godot, GameMaker, RPG Maker, Pyglet, custom engines, and other development tools.
+
+3. PROHIBITED USES
+
+You may not:
+
+a. Resell the original Asset files as-is.
+
+b. Redistribute, share, upload, give away, or otherwise make the original Asset files available as-is.
+
+c. Package the original Asset files as-is into another sprite pack, art pack, tileset, icon pack, asset bundle, download collection, marketplace listing, public repository, or similar product.
+
+d. Claim ownership or authorship of the original, unmodified Assets.
+
+e. Upload the original Asset files as-is to stock art sites, asset marketplaces, AI dataset repositories, file-sharing sites, public repositories, or similar distribution platforms.
+
+f. Use the Assets to train, fine-tune, validate, or otherwise develop artificial intelligence, machine learning, generative image, or dataset systems without written permission from Seller.
+
+g. Use the Assets in unlawful, defamatory, or fraudulent material.
+
+4. MODIFICATIONS
+
+You may modify the Assets for personal, commercial, client, or resale purposes.
+
+You may sell, license, or distribute modified versions of the Assets, provided that the original Asset files are not included as-is and the modified version is not merely a trivial file rename, format conversion, re-export, compression change, metadata change, or unchanged copy.
+
+Modified Assets created by you may be used in your own commercial products, client work, asset packs, games, software, websites, and other media.
+
+This License does not transfer ownership of the original, unmodified Assets. Seller retains ownership of the original Assets.
+
+5. CLIENT WORK
+
+You may use the Assets in work created for a client, provided that:
+
+a. The Assets are incorporated into the final project or modified for the client project.
+
+b. The client does not receive the right to resell, redistribute, share, upload, or give away the original Asset files as-is.
+
+c. The client is bound by restrictions at least as protective as this License.
+
+6. CREDIT
+
+Credit is not required. Cite "Ygg Engine <yggengine.com>" if you want to credit.
+
+7. NUMBER OF USERS / SEATS
+
+Unless otherwise stated on the product page, this License is for one individual user.
+
+For companies, teams, studios, or organizations, each person directly working with the editable original Asset files must have their own license, unless a team, studio, or extended license has been purchased.
+
+8. REFUNDS
+
+Due to the digital nature of the Assets, all sales are final once the files have been downloaded, unless otherwise required by applicable law or stated in Seller's refund policy.
+
+9. OWNERSHIP
+
+Seller retains all copyright, intellectual property rights, and ownership rights in the original, unmodified Assets.
+
+You own the original game, software, modified artwork, derivative work, or project you create using the Assets, but you do not own the original, unmodified Assets themselves.
+
+10. THIRD-PARTY RIGHTS
+
+You are responsible for ensuring that your use of the Assets complies with all laws, platform rules, publisher requirements, and third-party agreements applicable to your project.
+
+11. WARRANTY DISCLAIMER
+
+The Assets are provided "as is" without warranties of any kind, express or implied.
+
+Seller does not warrant that the Assets will meet your requirements, be error-free, or be compatible with every engine, platform, tool, or workflow.
+
+12. LIMITATION OF LIABILITY
+
+To the maximum extent permitted by law, Seller shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Assets.
+
+Seller's total liability shall not exceed the amount you paid for the Assets.
+
+13. TERMINATION
+
+This License automatically terminates if you violate its terms.
+
+Upon termination, you must stop using the original Asset files and delete all copies of the original Asset files in your possession, except for copies already incorporated into lawfully distributed projects before termination.
+
+14. CUSTOM OR EXTENDED LICENSES
+
+Custom, exclusive, studio, marketplace, redistribution of original files, merchandise, or AI-related rights require a separate written agreement signed by Seller.
+
+15. GOVERNING LAW
+
+This License shall be governed by the laws of the United States of America, without regard to conflict of law principles.
+
+16. CONTACT
+
+For licensing questions, contact:
+
+yggengine.com/asset-licensing

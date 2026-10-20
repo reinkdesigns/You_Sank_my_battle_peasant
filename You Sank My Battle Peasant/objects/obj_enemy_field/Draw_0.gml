@@ -1,4 +1,4 @@
-sprite_index = asset_get_index($"{global.unit[$ global.unit_type[monster]].unit}{global.unit_animation[count]}")
+sprite_index = asset_get_index($"{_struct_unit.unit}{global.unit_animation[count]}")
 
 draw_sprite_ext(
 sprite_index,
@@ -11,4 +11,3 @@ c_white,
 1
 )
 
-draw_text(x,y-25,busy)

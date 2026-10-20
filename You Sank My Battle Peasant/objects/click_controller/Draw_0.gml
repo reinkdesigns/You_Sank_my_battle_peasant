@@ -23,3 +23,4 @@ draw_rectangle(
 	true)
 
 
+draw_text(x+100,y+100, the_march.all_busy)

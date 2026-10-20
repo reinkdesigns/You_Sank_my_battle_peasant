@@ -5,4 +5,3 @@ if count = 3 {
 	count = 0
 }
 
-if busy busy = 0

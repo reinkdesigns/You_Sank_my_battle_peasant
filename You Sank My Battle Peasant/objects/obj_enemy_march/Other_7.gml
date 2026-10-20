@@ -4,3 +4,6 @@ if count = 3 {
 }else{
 	count = 0
 }
+
+
+if busy busy = false

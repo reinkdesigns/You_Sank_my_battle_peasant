@@ -1,5 +1,3 @@
-_unit = global.unit_type[monster]
-
 sprite_index = asset_get_index($"{global.unit[$ _unit].unit}{global.unit_animation[count]}")
 
 draw_sprite_ext(

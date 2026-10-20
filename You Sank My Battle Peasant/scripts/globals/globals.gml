@@ -25,6 +25,10 @@ for(i=1;i<12;i++){
 	array_push(global.march_posistion,{x:i*160,y:180})
 }
 
+global.march_posistion_float = []
+for(i=1;i<12;i++){
+	array_push(global.march_posistion_float,{x:i*160,y:125})
+}
 
 global.directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 global.wind_direction = 0
@@ -86,18 +90,22 @@ global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]
 
 function UnitData(_unit, _overrides = {}) constructor
 {
-    hp          = variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100;
-    mp          = variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100;
-    can_cast    = variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false;
-    can_block   = variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false;
-    is_summon   = variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false;
-    is_ranged   = variable_struct_exists(_overrides, "is_ranged") ? _overrides.is_ranged : false;
-    range       = variable_struct_exists(_overrides, "range") ? _overrides.range : false;
-    unit        = _unit + "_";
-    special     = variable_struct_exists(_overrides, "special") ? _overrides.special : false;
-    special2    = variable_struct_exists(_overrides, "special2") ? _overrides.special2 : false;
-    float       = variable_struct_exists(_overrides, "float") ? _overrides.float : false;
-    description = variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text";
+    hp				= variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100;
+    mp				= variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100;
+	attack_1_damage	= variable_struct_exists(_overrides, "attack_1_damage") ? _overrides.attack_1_damage : 10;		
+	attack_2_damage	= variable_struct_exists(_overrides, "attack_2_damage") ? _overrides.attack_2_damage : 20;		
+	field_movement	= variable_struct_exists(_overrides, "field_movement") ? _overrides.field_movement : 100;		
+	march_movement	= variable_struct_exists(_overrides, "march_movement") ? _overrides.march_movement : 1;	
+    can_cast		= variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false;
+    can_block		= variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false;
+    is_summon		= variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false;
+    is_ranged		= variable_struct_exists(_overrides, "is_ranged") ? _overrides.is_ranged : false;
+    range			= variable_struct_exists(_overrides, "range") ? _overrides.range : false;
+    unit			= _unit + "_";
+    special			= variable_struct_exists(_overrides, "special") ? _overrides.special : false;
+    special2		= variable_struct_exists(_overrides, "special2") ? _overrides.special2 : false;
+    float			= variable_struct_exists(_overrides, "float") ? _overrides.float : false;
+    description		= variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text";
 }
 
 
@@ -109,7 +117,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
         is_ranged	: "Both",
-		range		: "Long",
+		range		: 11,
         special		: Arrow01,
         special2	: Arrow02
 		}),
@@ -148,7 +156,7 @@ global.unit = {
 		mp			: 100,
 		can_block	: true,
 		is_ranged	: "Attack02",
-		range		: "Long",
+		range		: 11,
 		special		: Cannonball,
     }),
 	
@@ -156,7 +164,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		can_cast	: "Attack02",
-		range		: "Long",
+		range		: 11,
 		special		: Black_Knight_Beam,
     }),
 		
@@ -174,7 +182,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		is_ranged	: "Attack01",
-		range		: "Long",
+		range		: 11,
 		special		: Arrow04
     }),
 	
@@ -215,7 +223,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
         is_ranged	: "Attack02",
-		range		: "Short",
+		range		: 2,
 		}),
 		
 	Flame_Golem : new UnitData("Flame_Golem", {
@@ -228,7 +236,7 @@ global.unit = {
 		mp			: 100,
 		float		: true,
 		is_ranged	: "Attack02",
-		range		: "Short",
+		range		: 2,
     }),		
 		
 	Greatsword_Skeleton : new UnitData("Greatsword_Skeleton", {
@@ -297,7 +305,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		can_cast	: "Both",
-		range		: "Long",
+		range		: 11,
 		special		: Priest_Attack_effect,
 		special2	: Priest_Heal_effect,
     }),		
@@ -313,7 +321,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		is_ranged	: "Both",
-		range		: "Long",
+		range		: 11,
 		special		: Arrow03,
 		special2 	: Arrow01,
 		is_summon	: true,
@@ -338,7 +346,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		can_cast	: "Both",
-		range		: "Long",
+		range		: 11,
 		special		: Warlock_Effect,
 		special2	: Black_Knight_Beam,
     }),	
@@ -357,7 +365,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		can_cast	: "Both",
-		range		: "Long",
+		range		: 11,
 		special		: Wizard_Firebolt_Effect,
 		special2	: Wizard_Ice_Effect,
     }),	

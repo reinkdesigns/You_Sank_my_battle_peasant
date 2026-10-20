@@ -30,26 +30,6 @@ if (_distance <= _speed) {
 }
 
 // 4. Spacebar Random Destination Selection
-if (keyboard_check_pressed(vk_space)) {
-    var _pad_x = sprite_width / 2 + field_buffer;
-    var _pad_y = sprite_height / 2 + field_buffer;
-
-    var _min_x = global.enemy_field.x1 + _pad_x;
-    var _max_x = global.enemy_field.x2 - _pad_x;
-    var _min_y = global.enemy_field.y1 + _pad_y;
-    var _max_y = global.enemy_field.y2 - _pad_y;
-
-    // Choose a random direction and distance from current position.
-    var _dir = irandom(359);
-    var _dist = random_range(max_distance * 0.4, max_distance);
-
-    var _target_x = x + lengthdir_x(_dist, _dir);
-    var _target_y = y + lengthdir_y(_dist, _dir);
-
-    // Keep the destination inside the field.
-    dest_x = clamp(_target_x, _min_x, _max_x);
-    dest_y = clamp(_target_y, _min_y, _max_y);
-}
 
 
 _x = x
@@ -78,6 +58,6 @@ last_count = count
 
 }
 
-if count != 0 && count !=3 busy = true
+//if count != 0 && count !=3 busy = true
 
 //global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]

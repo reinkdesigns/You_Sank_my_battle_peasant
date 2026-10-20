@@ -1,3 +1,6 @@
+00.0000.0004
+added queue movement and attack
+
 00.0000.0003
 added movement logic
 finished construction and added units and attacks and other animations

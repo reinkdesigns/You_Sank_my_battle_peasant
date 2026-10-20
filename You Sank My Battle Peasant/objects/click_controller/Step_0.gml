@@ -18,3 +18,4 @@ if _mouse_over && mouse_check_button_pressed(mb_left){
 	_wild_y = mouse_y
 	}
 wild = warp_placement(_wild_x,_wild_y,50,50,_wild)
+

@@ -1,5 +1,4 @@
 _place_magic=[]
-
 wild = false
 _wild=0
 _wild_x = x
