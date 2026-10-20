@@ -73,13 +73,13 @@
   "isEcma":false,
   "LibraryEmitters":[],
   "MetaData":{
-    "IDEVersion":"2026.0.0.16",
+    "IDEVersion":"2024.14.4.222",
   },
   "name":"You Sank My Battle Peasant!",
   "resources":[
     {"id":{"name":"doodles","path":"notes/doodles/doodles.yy",},},
     {"id":{"name":"GDD","path":"notes/GDD/GDD.yy",},},
-    {"id":{"name":"Patch Notes","path":"notes/Patch Notes/Patch Notes.yy",},},
+    {"id":{"name":"Patch_Notes","path":"notes/Patch_Notes/Patch_Notes.yy",},},
     {"id":{"name":"TODO","path":"notes/TODO/TODO.yy",},},
     {"id":{"name":"click_controller","path":"objects/click_controller/click_controller.yy",},},
     {"id":{"name":"obj_chest","path":"objects/obj_chest/obj_chest.yy",},},
