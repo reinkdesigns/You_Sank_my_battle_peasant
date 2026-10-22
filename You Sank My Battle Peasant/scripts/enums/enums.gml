@@ -1,6 +1,6 @@
-enum wild_magic
-{
+enum wild_magic{
     no_effect,
+	blind,
     horz_mirror,
     vert_mirror,
     rotate_90,
@@ -23,6 +23,14 @@ enum wild_magic
 
 	COUNT
 }
+
+enum spellshape{
+line,
+radius,
+square,
+null,
+}
+
 global.max_wildmagic = wild_magic.COUNT
 /*
 	
