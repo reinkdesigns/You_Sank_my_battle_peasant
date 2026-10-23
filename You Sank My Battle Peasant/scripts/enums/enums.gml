@@ -1,3 +1,5 @@
+
+
 enum wild_magic{
     no_effect,
 	blind,
@@ -8,9 +10,9 @@ enum wild_magic{
     rotate_270,
 	horz_squish,
 	vert_squish,
+	shrink,
 	horz_stretch,
 	vert_stretch,
-	shrink,
 	enlarge,
 	wind_N,
 	wind_NE,
@@ -20,8 +22,18 @@ enum wild_magic{
 	wind_SW,
 	wind_W,
 	wind_NW,
-
 	COUNT
+}
+
+enum magic_types {
+none,
+blind,
+mirror,
+rotate,
+squish,
+stretch,
+wind,
+COUNT
 }
 
 enum spellshape{

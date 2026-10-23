@@ -16,3 +16,5 @@ Summon Zombie, picks a location at random and summons a zombie
 
 square
 quake, but square, causes a quake but square
+
+plug wild magics into spells

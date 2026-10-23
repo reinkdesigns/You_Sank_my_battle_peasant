@@ -1,3 +1,6 @@
+00.0000.0006
+added call_wild_magic function that creates a number of wild magics based on the world number
+
 00.0000.0005
 added line and radius spells logic
 
