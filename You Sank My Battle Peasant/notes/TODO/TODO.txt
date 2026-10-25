@@ -1,9 +1,4 @@
-make 4 spells
-line, radius, freecast, square
-
 get a sprite for each. spell object is just a hit box
-
-script or some controler to define spell
 
 Line
 solar beam, beam of light form sky causes a radius on the groudn taht follows the line
@@ -18,3 +13,5 @@ square
 quake, but square, causes a quake but square
 
 plug wild magics into spells
+
+add summon and summoning logic

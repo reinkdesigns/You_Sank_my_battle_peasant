@@ -29,10 +29,9 @@ if (_distance <= _speed) {
 
 // 4. Spacebar Random Destination Selection
 if the_march.all_busy=false{
-	if (keyboard_check_pressed(vk_space)) the_march.step=1 //march()
+
 	if (keyboard_check_pressed(ord("T"))) attack()
 }
-
 	//in order from 1-10 check unit within 5px of march posistion
 	//check the posistion they want to move to, if its free move foward, else do nothing
 	//this will be a function call elseware, probably a .method

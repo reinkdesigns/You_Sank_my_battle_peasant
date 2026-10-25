@@ -4,6 +4,13 @@ will add a new wild magic. since wild magic exsist ontop
 of the next spell queue this will also limit your future
 knowledge of what spells are coming up next
 */
+var spell_text = -holder.y*(global.world)-64
+for (var i=0; i<array_length(global.spell_deck); i++){
+	
+draw_text(x,y-spell_text, global.spell_deck[i].type)
+spell_text += 20
+}
+
 for (var i=0; i<global.world; i++){ //change this later to global.world
 //underlay
 draw_sprite(

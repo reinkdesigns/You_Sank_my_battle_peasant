@@ -1,9 +1,3 @@
-if keyboard_check_pressed(ord("B")) {
-	wm_spr = call_wild_magic()
-report_message(global.wild_magic)	
-}
-
-
 tooltip_mouseover= -1
 
 for (var i=0; i<global.world; i++){

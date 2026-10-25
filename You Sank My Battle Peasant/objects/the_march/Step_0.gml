@@ -90,6 +90,12 @@ if (step == 2)
 
 if resolve_index >= array_length(global.march_posistion) && !all_busy {
 	resolve_index = 0
-	step = (step+1) mod 3
+	step ++
 }
 
+if (step == 3) {
+	step = 0
+	wild_magic_holder.wm_spr = call_wild_magic()
+	next_spell_reload()
+	click_controller.wild=0
+}

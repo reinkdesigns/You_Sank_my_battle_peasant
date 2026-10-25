@@ -40,7 +40,8 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "You feel a compression in your mana.",
 	        "Your next spell's final location",
-	        "will be horizontally squished."
+	        "will be horizontally squished.",
+	        "(Line: Modifies thickness.(",
 	    ],
 
 	    vert_squish: [
@@ -48,7 +49,8 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "You feel a compression in your mana.",
 	        "Your next spell's final location",
-	        "will be vertically squished."
+	        "will be vertically squished.",
+			"(Line: Modifies range.)"
 	    ],
 
 	    shrink: [
@@ -64,7 +66,8 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "You feel an expansion in your mana.",
 	        "Your next spell's final location",
-	        "will be horizontally stretched."
+	        "will be horizontally stretched.",
+			"(Line: Modifies thickness.)"
 	    ],
 
 	    vert_stretch: [
@@ -72,7 +75,8 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "You feel an expansion in your mana.",
 	        "Your next spell's final location",
-	        "will be vertically stretched."
+	        "will be vertically stretched.",
+			"(Line: Modifies range.)"
 	    ],
 
 	    enlarge: [
@@ -112,7 +116,7 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "A strong wind shifts",
 	        "your spell's final location",
-	        $"by {global.w_str} units",
+	        $"by {wind_speed_str*(global.w_str/10)} units",
 	        $"in the {global.w_dir} direction."
 	    ]
 	};
