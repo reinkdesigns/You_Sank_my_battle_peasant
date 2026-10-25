@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"sh_rain",
+  "name":"sh_rain",
+  "parent":{
+    "name":"shader",
+    "path":"folders/shader.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

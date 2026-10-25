@@ -8,6 +8,6 @@ facing*_size,
 _size,
 0,
 c_white,
-1
+_alpha
 )
 

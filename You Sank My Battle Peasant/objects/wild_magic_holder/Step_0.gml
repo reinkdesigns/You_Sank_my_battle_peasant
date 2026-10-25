@@ -1,2 +1,23 @@
-_x += (keyboard_check_pressed(ord("D"))-keyboard_check_pressed(ord("A")))*sprite_get_width(sprite_index)
-_y += (keyboard_check_pressed(ord("S"))-keyboard_check_pressed(ord("W")))*sprite_get_height(sprite_index)
+if keyboard_check_pressed(ord("B")) {
+	wm_spr = call_wild_magic()
+report_message(global.wild_magic)	
+}
+
+
+tooltip_mouseover= -1
+
+for (var i=0; i<global.world; i++){
+	if point_in_rectangle(
+		mouse_x,
+		mouse_y,
+		mouse_over_loc[i][0],
+		mouse_over_loc[i][1],
+		mouse_over_loc[i][2],
+		mouse_over_loc[i][3]
+	){
+		tooltip_mouseover = i
+	}
+}
+
+
+

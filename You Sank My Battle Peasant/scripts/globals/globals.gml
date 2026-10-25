@@ -1,5 +1,11 @@
 #macro diag_mod 0.707
 global.world = 3
+global.blind = false
+global.rain = false
+global.w_str = "10"
+global.w_dir = "Northern"
+global.wild_magic = noone
+
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 

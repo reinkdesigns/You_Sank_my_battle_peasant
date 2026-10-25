@@ -25,6 +25,7 @@ dest_x=x
 dest_y=y
 max_distance = 0
 
+_alpha = 0
 
 
 //call movement

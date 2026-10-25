@@ -31,6 +31,7 @@ image_speed = .5
 dest_x=x
 dest_y=y
 
+_alpha = 0
 
 child_unit = instance_create_layer(10000,10000,"Unit_Field",obj_enemy_field)
 

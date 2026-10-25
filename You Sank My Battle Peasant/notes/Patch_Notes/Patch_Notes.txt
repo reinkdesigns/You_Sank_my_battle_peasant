@@ -1,3 +1,10 @@
+00.0000.0007
+added mouse over tooltips for wild magic
+added icons for no wild magic and blind
+global wild magic varaible added
+set up loop to run spell threw all wild magics effecting the spell.
+added ground work for spells
+
 00.0000.0006
 added call_wild_magic function that creates a number of wild magics based on the world number
 

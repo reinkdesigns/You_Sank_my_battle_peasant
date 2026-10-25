@@ -76,6 +76,11 @@ last_count = count
 }
 
 
+if _alpha < 1 && global.blind = false _alpha += 0.1
+
+if _alpha > 0 && global.blind = true _alpha -= 0.1
+
+
 if count != 0 && count !=3 busy = true
 
 //child_unit.count = count
