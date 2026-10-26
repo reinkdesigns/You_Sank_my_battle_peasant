@@ -1,5 +1,13 @@
+00.0000.0009
+added ruler
+added marks
+added object to serve as spell hit box
+cleaned up UI
+
 00.0000.0008
 added rudimentary spells
+added spell deck
+spell deck reloads once empty and gives minnions an extra move
 
 00.0000.0007
 added mouse over tooltips for wild magic

@@ -1,4 +1,3 @@
-child_unit=noone
 alarm_set(0,2)
 count = 0
 _ping_x=x-global_x
@@ -13,12 +12,14 @@ _y = y
 _y_last = _y
 _start_speed = 2
 
+show_link = false
+
 _speed = _start_speed
 _size = normal_unit
 
 facing=1
 
-count = 0
+count = 0 //animation id call ["Idle","Walk","Hurt","Death","Attack01","Attack02"]
 last_count = 0
 
 image_speed = .5

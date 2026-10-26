@@ -5,6 +5,7 @@ global.blind = false
 global.rain = false
 global._ping_alpha = 0
 global.w_str = "10"
+global.debug = false
 global.w_dir = "Northern"
 global.wild_magic = noone
 

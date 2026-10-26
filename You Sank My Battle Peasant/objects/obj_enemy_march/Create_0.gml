@@ -13,6 +13,8 @@ _x_last = _x
 _y = y
 _y_last = _y
 
+show_link = false
+
 movement = 0
 _start_speed = 5
 attack_range = 3

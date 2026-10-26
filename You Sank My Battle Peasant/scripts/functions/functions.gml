@@ -1,4 +1,6 @@
-#macro wind_speed_str 3
+#macro base_wind_str 25
+#macro reduce 0.75
+#macro increase 1.25
 
 function cast_square(_x, _y, _x_offset, _y_offset)
 {
@@ -9,21 +11,29 @@ function cast_square(_x, _y, _x_offset, _y_offset)
         var _final = (i == global.world - 1);
 
         loc = warp_square(
-            loc[0],
-            loc[1],
-            loc[2],
-            loc[3],
+            loc[0], //x
+            loc[1], //y
+            loc[2], //half length
+            loc[3], //half width
             global.wild_magic[i],
             _final
         );
     }
 
 	the_march.step=1//march()
+	ruler_controller.mark=[]
     return loc;
 }
 
-function warp_square(_x, _y, _x_offset, _y_offset, _wild_magic, _final = true, _wind_shunt = (global.w_str+1)*wind_speed_str)
-{
+function warp_square(
+						_x,
+						_y,
+						_x_offset,
+						_y_offset,
+						_wild_magic,
+						_final = true,
+						_wind_shunt = global.w_str){
+							
     var _place_w = global.spell_field.x2 - global.spell_field.x1;
     var _place_h = global.spell_field.y2 - global.spell_field.y1;
     var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
@@ -80,29 +90,29 @@ function warp_square(_x, _y, _x_offset, _y_offset, _wild_magic, _final = true, _
     switch (_wild_magic)
     {
         case wild_magic.horz_squish:
-            _uw *= 0.5;
+            _uw *= reduce;
             break;
 
         case wild_magic.vert_squish:
-            _vh *= 0.5;
+            _vh *= reduce;
             break;
 
         case wild_magic.horz_stretch:
-            _uw *= 2;
+            _uw *= increase;
             break;
 
         case wild_magic.vert_stretch:
-            _vh *= 2;
+            _vh *= increase;
             break;
 
         case wild_magic.shrink:
-            _uw *= 0.5;
-            _vh *= 0.5;
+            _uw *= reduce;
+            _vh *= reduce;
             break;
 
         case wild_magic.enlarge:
-            _uw *= 2;
-            _vh *= 2;
+            _uw *= increase;
+            _vh *= increase;
             break;
     }
 
@@ -129,7 +139,7 @@ function warp_square(_x, _y, _x_offset, _y_offset, _wild_magic, _final = true, _
         _result_x_offset = _uw;
         _result_y_offset = _vh;
     }
-
+	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
     // Apply wind to the center.
     switch (_wild_magic)
     {
@@ -197,12 +207,20 @@ function cast_radius(_x, _y, _r)
         );
 
     }
+	ruler_controller.mark=[]
 	the_march.step=1//march()
     return loc;
 }
 
-function warp_radius(_x, _y, _r1, _r2, _wild_magic, _final = true, _wind_shunt = (global.w_str+1)*wind_speed_str)
-{
+function warp_radius(	
+					_x,
+					_y,
+					_r1,
+					_r2,
+					_wild_magic,
+					_final = true,
+					_wind_shunt = global.w_str){
+						
     var _place_w = global.spell_field.x2 - global.spell_field.x1;
     var _place_h = global.spell_field.y2 - global.spell_field.y1;
     var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
@@ -250,29 +268,29 @@ function warp_radius(_x, _y, _r1, _r2, _wild_magic, _final = true, _wind_shunt =
     switch (_wild_magic)
     {
         case wild_magic.horz_squish:
-            _scale_y = 0.5;
+            _scale_y = reduce;
             break;
 
         case wild_magic.vert_squish:
-            _scale_x = 0.5;
+            _scale_x = reduce;
             break;
 
         case wild_magic.horz_stretch:
-            _scale_y = 2;
+            _scale_y = increase;
             break;
 
         case wild_magic.vert_stretch:
-            _scale_x = 2;
+            _scale_x = increase;
             break;
 
         case wild_magic.shrink:
-            _scale_x = 0.5;
-            _scale_y = 0.5;
+            _scale_x = reduce;
+            _scale_y = reduce;
             break;
 
         case wild_magic.enlarge:
-            _scale_x = 2;
-            _scale_y = 2;
+            _scale_x = increase;
+            _scale_y = increase;
             break;
     }
 
@@ -304,7 +322,7 @@ function warp_radius(_x, _y, _r1, _r2, _wild_magic, _final = true, _wind_shunt =
         _result_x = global.spell_field.x1 + _u * _place_w;
         _result_y = global.spell_field.y1 + _v * _place_h;
     }
-
+	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
     // Apply wind to the center.
     switch (_wild_magic)
     {
@@ -373,12 +391,21 @@ function cast_line(_x1, _y1, _x2, _y2, _thickness, _range)
             _final
         );
     }
+	ruler_controller.mark=[]
 	the_march.step=1//march()
     return loc;
 }
 
-function warp_line(_x1, _y1, _x2, _y2, _thickness, _range, _wild_magic, _final = true, _wind_shunt = (global.w_str+1)*wind_speed_str)
-{
+function warp_line(
+				_x1,
+				_y1,
+				_x2,
+				_y2,
+				_thickness,
+				_range,
+				_wild_magic,
+				_final = true, _wind_shunt = global.w_str){
+					
     var _place_w = global.spell_field.x2 - global.spell_field.x1;
     var _place_h = global.spell_field.y2 - global.spell_field.y1;
     var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
@@ -434,8 +461,8 @@ function warp_line(_x1, _y1, _x2, _y2, _thickness, _range, _wild_magic, _final =
     }
 
     // Calculate transformed center.
-    var _center_u = (_u1 + _u2) * 0.5;
-    var _center_v = (_v1 + _v2) * 0.5;
+    var _center_u = (_u1 + _u2) * reduce;
+    var _center_v = (_v1 + _v2) * reduce;
 
     var _scale_x = 1;
     var _scale_y = 1;
@@ -445,37 +472,37 @@ function warp_line(_x1, _y1, _x2, _y2, _thickness, _range, _wild_magic, _final =
     switch (_wild_magic)
     {
         case wild_magic.horz_squish:
-            _scale_x = 0.5;
-            _thickness_scale = 0.5;
+            _scale_x = reduce;
+            _thickness_scale = reduce;
             break;
 
         case wild_magic.vert_squish:
-            _scale_y = 0.5;
-            _range_scale = 0.5;
+            _scale_y = reduce;
+            _range_scale = reduce;
             break;
 
         case wild_magic.horz_stretch:
-            _scale_x = 2;
-            _thickness_scale = 2;
+            _scale_x = increase;
+            _thickness_scale = increase;
             break;
 
         case wild_magic.vert_stretch:
-            _scale_y = 2;
-            _range_scale = 2;
+            _scale_y = increase;
+            _range_scale = increase;
             break;
 
         case wild_magic.shrink:
-            _scale_x = 0.5;
-            _scale_y = 0.5;
-            _thickness_scale = 0.5;
-            _range_scale = 0.5;
+            _scale_x = reduce;
+            _scale_y = reduce;
+            _thickness_scale = reduce;
+            _range_scale = reduce;
             break;
 
         case wild_magic.enlarge:
-            _scale_x = 2;
-            _scale_y = 2;
-            _thickness_scale = 2;
-            _range_scale = 2;
+            _scale_x = increase;
+            _scale_y = increase;
+            _thickness_scale = increase;
+            _range_scale = increase;
             break;
     }
 
@@ -509,7 +536,7 @@ function warp_line(_x1, _y1, _x2, _y2, _thickness, _range, _wild_magic, _final =
 
     var _result_thickness = _thickness * _thickness_scale;
     var _result_range = _range * _range_scale;
-
+	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
     // Apply wind to both endpoints.
     switch (_wild_magic)
     {
@@ -599,7 +626,7 @@ function call_wild_magic()
 {
 	
 	var _wind_str = irandom(2)
-	global.w_str = (_wind_str+1)*10
+	global.w_str = (_wind_str+1)*base_wind_str
 	var _wind_direction = irandom(7)
 	
     var _magic = [];

@@ -1,3 +1,5 @@
+plug spells into hitbox
+
 get a sprite for each. spell object is just a hit box
 
 Line

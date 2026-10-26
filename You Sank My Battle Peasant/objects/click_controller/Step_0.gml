@@ -14,7 +14,7 @@ if global._ping_alpha > 0 global._ping_alpha -= 0.02
 
 _mouse_over = (point_in_rectangle(mouse_x, mouse_y, global.spell_field.x1, global.spell_field.y1, global.spell_field.x2, global.spell_field.y2))
 
-if the_march.step = 0{
+if the_march.step = 0 && !keyboard_check(ord("R")){
 
 	if global.spell_deck[0].type = "square"{
 		if _mouse_over && mouse_check_button_pressed(mb_left){
@@ -38,7 +38,7 @@ if the_march.step = 0{
 		if _mouse_over && mouse_check_button_pressed(mb_left){
 			_wild_x = mouse_x
 			_wild_y = mouse_y
-			wild = warp_radius(_wild_x,_wild_y,_width,_wild)
+			wild = cast_radius(_wild_x,_wild_y,_width)
 			}
 	}
 

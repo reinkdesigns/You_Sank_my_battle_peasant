@@ -44,13 +44,7 @@ loc[i].x,
 loc[i].y
 )
 
-draw_rectangle(
-	loc[i].x-(holder.x/2),
-	loc[i].y-(holder.y/2),
-	loc[i].x+holder.x/2,
-	loc[i].y+holder.y/2,
-	true
-	)
+
 
 }
 

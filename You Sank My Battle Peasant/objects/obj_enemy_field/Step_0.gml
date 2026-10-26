@@ -1,6 +1,9 @@
 if count !=3 image_speed = 0.5
 depth = 1-(y / room_height) * 100;
 _speed = _start_speed;
+show_link = false
+if position_meeting(mouse_x, mouse_y, id) show_link = true
+
 
 // 1. Check total distance to destination
 var _distance = point_distance(x, y, dest_x, dest_y);

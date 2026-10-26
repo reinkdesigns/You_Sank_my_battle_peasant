@@ -116,7 +116,7 @@ function set_global_tooltip(){
 	        $"{global.line_break}",
 	        "A strong wind shifts",
 	        "your spell's final location",
-	        $"by {wind_speed_str*(global.w_str/10)} units",
+	        $"by {global.w_str} units",
 	        $"in the {global.w_dir} direction."
 	    ]
 	};

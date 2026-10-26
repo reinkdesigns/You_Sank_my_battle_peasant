@@ -7,6 +7,9 @@
 			wild[0]+wild[2],
 			wild[1]+wild[3],
 			false)
+			draw_set_colour(c_red)
+		//draw_circle(wild[0],wild[1],10,true)
+		draw_set_colour(c_white)
 	}
 	
 	if (global.spell_deck[0].type == "line") {
