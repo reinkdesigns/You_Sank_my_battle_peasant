@@ -8,7 +8,7 @@ global.w_str = "10"
 global.debug = false
 global.w_dir = "Northern"
 global.wild_magic = noone
-
+global.unit_list =[]
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

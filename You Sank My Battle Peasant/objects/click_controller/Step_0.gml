@@ -103,7 +103,25 @@ if the_march.step = 0 && !keyboard_check(ord("R")){
 	            global.spell_deck[0].width,
 				global.spell_deck[0].range
 	        );
-
+			var _direction = point_direction(
+	            wild[0],
+	            wild[1],
+	            wild[2],
+	            wild[3]
+	        );
+			var _range_x = wild[0] + lengthdir_x(wild[5], _direction);
+	        var _range_y = wild[1] + lengthdir_y(wild[5], _direction);
+			
+			var _hits = line_attack_hits(
+			    wild[0],
+	            wild[1],
+	            _range_x,
+	            _range_y,
+	            wild[4],
+			    global.unit_list
+			);
+			report_message(_hits)
+			
 	        alarm_set(0, 10);
 	    }
 	}

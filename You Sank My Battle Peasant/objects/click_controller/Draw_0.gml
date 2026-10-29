@@ -12,6 +12,7 @@
 		draw_set_colour(c_white)
 	}
 	
+	
 	if (global.spell_deck[0].type == "line") {
 
 	    // Draw position 1 marker.

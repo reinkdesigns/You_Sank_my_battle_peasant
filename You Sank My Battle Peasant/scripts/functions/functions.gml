@@ -599,6 +599,52 @@ function warp_line(
     ];
 }
 
+function line_attack_hits(_x1, _y1, _x2, _y2, _thickness, _units)
+{
+    var _hits = ds_list_create();
+
+    var _dx = _x2 - _x1;
+    var _dy = _y2 - _y1;
+    var _length_sq = _dx * _dx + _dy * _dy;
+
+    var _count = ds_list_size(_units);
+
+    for (var i = 0; i < _count; i++)
+    {
+        var _unit = _units[| i];
+
+        if (!instance_exists(_unit))
+            continue;
+
+        var _ux = _unit.x - _x1;
+        var _uy = _unit.y - _y1;
+
+        var _t = 0;
+
+        if (_length_sq > 0)
+        {
+            _t = clamp(
+                (_ux * _dx + _uy * _dy) / _length_sq,
+                0,
+                1
+            );
+        }
+
+        var _closest_x = _x1 + _t * _dx;
+        var _closest_y = _y1 + _t * _dy;
+
+        var _dist_x = _unit.x - _closest_x;
+        var _dist_y = _unit.y - _closest_y;
+
+        if (_dist_x * _dist_x + _dist_y * _dist_y
+            <= _thickness * _thickness)
+        {
+            ds_list_add(_hits, _unit);
+        }
+    }
+
+    return _hits;
+}
 
 function summon_unit(_unit){
 var _peasant = instance_create_layer(x,y,"March",obj_enemy_march)
