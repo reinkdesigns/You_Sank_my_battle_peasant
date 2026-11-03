@@ -189,6 +189,7 @@ function warp_square(
 }
 
 
+
 function cast_radius(_x, _y, _r)
 {
     var loc = [_x, _y, _r, _r];
@@ -370,6 +371,7 @@ function warp_radius(
         _result_r2
     ];
 }
+
 
 
 function cast_line(_x1, _y1, _x2, _y2, _thickness, _range)

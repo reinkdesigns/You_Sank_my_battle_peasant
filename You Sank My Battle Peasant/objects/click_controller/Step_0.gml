@@ -31,6 +31,7 @@ if the_march.step = 0 && !keyboard_check(ord("R")){
 			_wild_x = mouse_x
 			_wild_y = mouse_y
 			wild = cast_radius(_wild_x,_wild_y,_width)
+			global.spell_deck[0].run_spell(wild)
 			}
 	}
 

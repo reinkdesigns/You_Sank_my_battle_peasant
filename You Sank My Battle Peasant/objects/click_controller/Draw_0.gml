@@ -82,7 +82,10 @@
 	    wild[1] + wild[3],
 	    false
 		);
-
+		draw_set_colour(c_red)
+		draw_circle(wild[0],wild[1],5,false)
+		draw_set_colour(c_white)
+		
 	}	
 
 
