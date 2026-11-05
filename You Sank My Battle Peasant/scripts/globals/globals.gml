@@ -9,6 +9,7 @@ global.debug = false
 global.w_dir = "Northern"
 global.wild_magic = noone
 global.unit_list =[]
+global.game_start = false
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

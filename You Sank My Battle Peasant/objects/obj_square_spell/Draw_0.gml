@@ -2,17 +2,17 @@
 draw_sprite_stretched(
     square_spell,
     image_index,
-    x - _l / 2,
-    y - _w / 2,
-    _l,
-    _w
+    x - _width / 2,
+    y - _height / 2,
+    _width,
+    _height
 );
 
 
 draw_rectangle(
-    x - _l / 2,
-    y - _w / 2,
-    x + _l / 2,
-    y + _w / 2,
+    x - _width / 2,
+    y - _height / 2,
+    x + _width / 2,
+    y + _height / 2,
     true
 );

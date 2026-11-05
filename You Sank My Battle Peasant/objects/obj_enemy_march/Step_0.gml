@@ -1,5 +1,22 @@
 _speed = _start_speed;
 show_link = false
+
+if _hp <= 0 {
+_hp = 0
+count = 3
+child_unit.count = 3
+}
+
+if _dead {
+	_alpha -= 0.1
+	child_unit._alpha -= 0.1
+	if _alpha <= 0 {
+		with child_unit instance_destroy()
+		instance_destroy()
+	}
+}
+
+
 if position_meeting(mouse_x, mouse_y, id) show_link = true
 
 
@@ -79,12 +96,12 @@ last_count = count
 }
 
 
-if _alpha < 1 && global.blind = false _alpha += 0.1
+if _alpha < 1 && global.blind == false && count !=3  _alpha += 0.1
 
-if _alpha > 0 && global.blind = true _alpha -= 0.1
+if _alpha > 0 && global.blind == true && count !=3  _alpha -= 0.1
 
 
-if count != 0 && count !=3 busy = true
+if count != 0 busy = true
 
 //child_unit.count = count
 

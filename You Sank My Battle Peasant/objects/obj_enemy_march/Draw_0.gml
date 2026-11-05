@@ -24,6 +24,7 @@ image_yscale=_size
 
 if global.blind = false{
 draw_text(x,y-100,global.unit_type[monster])
-draw_text(x,y-75,global.unit[$ _unit].hp)
+draw_text(x,y-75,_hp)
+draw_text(x,y-50,count)
 }
 

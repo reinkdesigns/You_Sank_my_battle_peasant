@@ -1,3 +1,19 @@
+if (die_on_move) {
+    var _dist = point_distance(x, y, target_x, target_y);
+    var _dir = point_direction(x, y, target_x, target_y);
+
+    var _move = min(move_speed, _dist);
+
+    x += lengthdir_x(_move, _dir);
+    y += lengthdir_y(_move, _dir);
+
+    if (_move >= _dist) {
+        x = target_x;
+        y = target_y;
+        alarm[0] = 1;
+    }
+}
+
 
 // Calculate rectangle boundaries, centered on the spell.
 _x1 = x + _r1
@@ -32,6 +48,7 @@ for (var i = 0; i < ds_list_size(candidates); i++) {
 			array_insert(was_hit,0,_unit)
             _unit.count = 2;
             _unit.parent_unit.count = 2;
+            _unit.parent_unit._hp -= damage;
         }
     }
 }

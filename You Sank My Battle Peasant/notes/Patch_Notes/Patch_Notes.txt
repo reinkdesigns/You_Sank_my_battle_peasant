@@ -1,3 +1,7 @@
+00.0000.0010
+added 1st spell that interacts with the units, AOE
+spell dies after 100 ticks
+
 00.0000.0009
 added ruler
 added marks

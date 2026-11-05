@@ -1,4 +1,5 @@
 was_hit = [];
 depth = -100;
-_l = 50;
-_w = 200;
+_width = 50;
+_height = 50;
+damage = 0

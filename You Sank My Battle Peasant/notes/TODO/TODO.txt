@@ -1,6 +1,6 @@
 plug spells into hitbox
 
-get a sprite for each. spell object is just a hit box
+get a sprite for each spell object is just a hit box
 
 Line
 solar beam, beam of light form sky causes a radius on the groudn taht follows the line

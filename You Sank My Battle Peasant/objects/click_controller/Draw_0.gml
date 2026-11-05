@@ -74,19 +74,7 @@
 	    }
 	}
 	
-	if global.spell_deck[0].type = "AOE" && wild !=0{
-		draw_ellipse(
-	    wild[0] - wild[2],
-	    wild[1] - wild[3],
-	    wild[0] + wild[2],
-	    wild[1] + wild[3],
-	    false
-		);
-		draw_set_colour(c_red)
-		draw_circle(wild[0],wild[1],5,false)
-		draw_set_colour(c_white)
-		
-	}	
+
 
 
 

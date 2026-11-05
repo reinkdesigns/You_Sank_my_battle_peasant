@@ -1,7 +1,17 @@
 all_busy = false
 //with obj_enemy_field if busy other.all_busy = true
 with obj_enemy_march if busy other.all_busy = true
+if (instance_exists(obj_circle_spell)||
+	instance_exists(obj_square_spell)){
+	all_busy = true
+	}
 
+var units_left = 0
+with obj_enemy_march other.units_left=1
+if units_left = 0 && global.game_start {
+	report_message("You Win!")
+	game_end();
+}
 
 
 if (step == 1)

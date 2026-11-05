@@ -1,4 +1,5 @@
 _unit = global.unit_type[monster]
+_hp = global.unit[$ _unit].hp
 _struct_unit = global.unit[$ _unit]
 	var _pos = global.march_posistion
 	if _struct_unit.float _pos = global.march_posistion_float

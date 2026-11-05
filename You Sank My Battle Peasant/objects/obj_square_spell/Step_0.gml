@@ -1,8 +1,8 @@
 // Calculate rectangle boundaries, centered on the spell.
-_x1 = x - _l / 2;
-_y1 = y - _w / 2;
-_x2 = x + _l / 2;
-_y2 = y + _w / 2;
+_x1 = x - _width / 2;
+_y1 = y - _height / 2;
+_x2 = x + _width / 2;
+_y2 = y + _height / 2;
 
 // Find enemies overlapping the rectangle.
 var candidates = ds_list_create();
@@ -27,6 +27,7 @@ for (var i = 0; i < ds_list_size(candidates); i++) {
         array_insert(was_hit, 0, _unit);
         _unit.count = 2;
         _unit.parent_unit.count = 2;
+		_unit.parent_unit._hp -= damage;
     }
 }
 

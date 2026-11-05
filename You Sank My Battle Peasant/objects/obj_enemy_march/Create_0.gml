@@ -7,7 +7,8 @@ y=-1000
 monster = 0
 _unit = global.unit_type[monster]
 _struct_unit = global.unit[$ _unit]
-
+_hp = 10
+_dead = false
 _x=x
 _x_last = _x
 _y = y

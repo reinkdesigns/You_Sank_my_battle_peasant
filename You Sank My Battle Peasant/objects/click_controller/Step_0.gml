@@ -21,7 +21,7 @@ if the_march.step = 0 && !keyboard_check(ord("R")){
 			_wild_x = mouse_x
 			_wild_y = mouse_y
 			wild = cast_square(_wild_x,_wild_y,_width,_width)
-		
+			global.spell_deck[0].run_spell(wild)
 			}
 	
 	}
@@ -112,18 +112,8 @@ if the_march.step = 0 && !keyboard_check(ord("R")){
 	        );
 			var _range_x = wild[0] + lengthdir_x(wild[5], _direction);
 	        var _range_y = wild[1] + lengthdir_y(wild[5], _direction);
-			
-			var _hits = line_attack_hits(
-			    wild[0],
-	            wild[1],
-	            _range_x,
-	            _range_y,
-	            wild[4],
-			    global.unit_list
-			);
-			report_message(_hits)
-			
 	        alarm_set(0, 10);
+			global.spell_deck[0].run_spell(wild)
 	    }
 	}
 	
