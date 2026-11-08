@@ -23,7 +23,7 @@ image_xscale = _size
 image_yscale = _size*.8
 
 if global._ping_alpha >.96  {
-	_ping_x=x-global_x
+	_ping_x=x-field_x_offset
 	_ping_y=y
 }
 draw_set_alpha(global._ping_alpha)

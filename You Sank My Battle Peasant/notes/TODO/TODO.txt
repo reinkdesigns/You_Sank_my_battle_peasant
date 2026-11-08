@@ -1,4 +1,20 @@
-plug spells into hitbox
+add unit queue
+add overflow queue to bottom
+im thinking second march that has infinite slots  and units only move in if there in a slot open
+they probably all move at once just to not slow the game down with waiting for useless waiting
+fix summoning new unit triggers you win?
+
+spells need
+	ground sprite 
+	floating sprite
+	origin sprite
+	
+summon unit and behavior
+
+plug spells into info pannel on hover
+	on hover show hover spell stats, off hover show next spell stats
+	
+add chests into hitbox
 
 get a sprite for each spell object is just a hit box
 
@@ -13,7 +29,3 @@ Summon Zombie, picks a location at random and summons a zombie
 
 square
 quake, but square, causes a quake but square
-
-plug wild magics into spells
-
-add summon and summoning logic

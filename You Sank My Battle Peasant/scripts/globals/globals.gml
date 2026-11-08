@@ -1,5 +1,10 @@
 #macro diag_mod 0.707
-#macro global_x 960
+#macro player_start_location 321
+#macro unit_location_offset_x 114
+#macro unit_location_offset_y 155
+#macro floating_unit_y_offset 30
+#macro field_x_offset 685
+
 global.world = 3
 global.blind = false
 global.rain = false
@@ -20,27 +25,36 @@ window_set_fullscreen(true)
 
 
 global.spell_field = {
-	x1 : 185,
-	y1 : 265,
-	x2 : 775,
+	x1 : 535,//185,
+	y1 : 263,
+	x2 : 1130,//775,
 	y2 : 890
 
 }
 
 global.enemy_field = {
-	x1 : 1145,
-	y1 : 265,
-	x2 : 1735,
-	y2 : 890
+	x1 : global.spell_field.x1+field_x_offset,
+	y1 : global.spell_field.y1,
+	x2 : global.spell_field.x2+field_x_offset,
+	y2 : global.spell_field.y2
 }
+
+//435
+
+
+
 global.march_posistion = []
 for(i=1;i<12;i++){
-	array_push(global.march_posistion,{x:i*160,y:180})
+	array_push(global.march_posistion,{
+		x: player_start_location+i* unit_location_offset_x,
+		y: unit_location_offset_y})
 }
 
 global.march_posistion_float = []
 for(i=1;i<12;i++){
-	array_push(global.march_posistion_float,{x:i*160,y:125})
+	array_push(global.march_posistion_float,{
+		x: player_start_location+i* unit_location_offset_x,
+		y: unit_location_offset_y-floating_unit_y_offset})
 }
 
 global.directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];

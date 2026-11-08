@@ -1,6 +1,6 @@
 alarm_set(0,2)
 count = 0
-_ping_x=x-global_x
+_ping_x=x-field_x_offset
 _ping_y=y
 monster = 0
 _unit = global.unit_type[monster]

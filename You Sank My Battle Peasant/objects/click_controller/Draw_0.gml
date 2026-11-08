@@ -1,4 +1,5 @@
-
+draw_text(mouse_x+50,mouse_y,mouse_x)
+draw_text(mouse_x+50,mouse_y+25,mouse_y)
 
 	if global.spell_deck[0].type = "square" && wild !=0{
 		draw_rectangle(
