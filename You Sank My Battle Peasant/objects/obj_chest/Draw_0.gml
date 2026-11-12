@@ -7,5 +7,5 @@ y,
 1,
 0,
 c_white,
-alpha
+core.alpha
 )

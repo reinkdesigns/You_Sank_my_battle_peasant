@@ -1,29 +1,29 @@
 if (keyboard_check(ord("R"))) {
-    if (mouse_check_button_pressed(mb_left)) {
-        measuring = true;
+	if (mouse_check_button_pressed(mb_left)) {
+		measuring = true;
 
-        start_x = mouse_x;
-        start_y = mouse_y;
-        end_x = mouse_x;
-        end_y = mouse_y;
-    }
+		start_x = mouse_x;
+		start_y = mouse_y;
+		end_x = mouse_x;
+		end_y = mouse_y;
+	}
 
-    if (measuring && mouse_check_button(mb_left)) {
-        end_x = mouse_x;
-        end_y = mouse_y;
+	if (measuring && mouse_check_button(mb_left)) {
+		end_x = mouse_x;
+		end_y = mouse_y;
 
-        distance = point_distance(
-            start_x, start_y,
-            end_x, end_y
-        );
-    }
+		distance = point_distance(
+			start_x, start_y,
+			end_x, end_y
+		);
+	}
 }
 else {
-    measuring = false;
+	measuring = false;
 }
 
 if (!mouse_check_button(mb_left)) {
-    measuring = false;
+	measuring = false;
 }
 
 if point_in_rectangle(

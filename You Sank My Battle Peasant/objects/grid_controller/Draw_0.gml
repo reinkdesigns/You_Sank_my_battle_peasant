@@ -5,14 +5,14 @@ var _cell_h = (global.spell_field.y2 - global.spell_field.y1) / _grid;
 
 // Vertical lines
 for (var i = 0; i <= _grid; i++) {
-    var _x = global.spell_field.x1 + i * _cell_w;
-    draw_line(_x, global.spell_field.y1, _x, global.spell_field.y2);
+	var _x = global.spell_field.x1 + i * _cell_w;
+	draw_line(_x, global.spell_field.y1, _x, global.spell_field.y2);
 }
 
 // Horizontal lines
 for (var i = 0; i <= _grid; i++) {
-    var _y = global.spell_field.y1 + i * _cell_h;
-    draw_line(global.spell_field.x1, _y, global.spell_field.x2, _y);
+	var _y = global.spell_field.y1 + i * _cell_h;
+	draw_line(global.spell_field.x1, _y, global.spell_field.x2, _y);
 }
 
 
@@ -22,12 +22,12 @@ var _cell_h2 = (global.enemy_field.y2 - global.enemy_field.y1) / _grid;
 
 // Vertical lines
 for (var i = 0; i <= _grid; i++) {
-    var _x = global.enemy_field.x1 + i * _cell_w2;
-    draw_line(_x, global.enemy_field.y1, _x, global.enemy_field.y2);
+	var _x = global.enemy_field.x1 + i * _cell_w2;
+	draw_line(_x, global.enemy_field.y1, _x, global.enemy_field.y2);
 }
 
 // Horizontal lines
 for (var i = 0; i <= _grid; i++) {
-    var _y = global.enemy_field.y1 + i * _cell_h2;
-    draw_line(global.enemy_field.x1, _y, global.enemy_field.x2, _y);
+	var _y = global.enemy_field.y1 + i * _cell_h2;
+	draw_line(global.enemy_field.x1, _y, global.enemy_field.x2, _y);
 }

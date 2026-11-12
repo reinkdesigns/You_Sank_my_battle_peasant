@@ -14,3 +14,5 @@ resolve_index = 1;
 
 all_busy = false
 busy_flag = false
+
+units_left = 0

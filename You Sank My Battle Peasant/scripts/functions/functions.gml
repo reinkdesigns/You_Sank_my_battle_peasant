@@ -1,28 +1,29 @@
 #macro base_wind_str 25
 #macro reduce 0.75
 #macro increase 1.25
+#macro keep_roll 300
 
 function cast_square(_x, _y, _x_offset, _y_offset)
 {
-    var loc = [_x, _y, _x_offset, _y_offset];
+	var loc = [_x, _y, _x_offset, _y_offset];
 
-    for (var i = 0; i < global.world; i++)
-    {
-        var _final = (i == global.world - 1);
+	for (var i = 0; i < global.world; i++)
+	{
+		var _final = (i == global.world - 1);
 
-        loc = warp_square(
-            loc[0], //x
-            loc[1], //y
-            loc[2], //half length
-            loc[3], //half width
-            global.wild_magic[i],
-            _final
-        );
-    }
+		loc = warp_square(
+			loc[0], //x
+			loc[1], //y
+			loc[2], //half length
+			loc[3], //half width
+			global.wild_magic[i],
+			_final
+		);
+	}
 
 	the_march.step=1//march()
 	ruler_controller.mark=[]
-    return loc;
+	return loc;
 }
 
 function warp_square(
@@ -34,183 +35,183 @@ function warp_square(
 						_final = true,
 						_wind_shunt = global.w_str){
 							
-    var _place_w = global.spell_field.x2 - global.spell_field.x1;
-    var _place_h = global.spell_field.y2 - global.spell_field.y1;
-    var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
-    var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
+	var _place_w = global.spell_field.x2 - global.spell_field.x1;
+	var _place_h = global.spell_field.y2 - global.spell_field.y1;
+	var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
+	var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
 
-    // Normalize center coordinates.
-    var _u = (_x - global.spell_field.x1) / _place_w;
-    var _v = (_y - global.spell_field.y1) / _place_h;
+	// Normalize center coordinates.
+	var _u = (_x - global.spell_field.x1) / _place_w;
+	var _v = (_y - global.spell_field.y1) / _place_h;
 
-    // Keep offsets in spell-field units.
-    var _uw = _x_offset;
-    var _vh = _y_offset;
+	// Keep offsets in spell-field units.
+	var _uw = _x_offset;
+	var _vh = _y_offset;
 
-    var _temp;
+	var _temp;
 
-    // Transform center.
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_mirror:
-            _u = 1 - _u;
-            break;
+	// Transform center.
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_mirror:
+			_u = 1 - _u;
+			break;
 
-        case wild_magic.vert_mirror:
-            _v = 1 - _v;
-            break;
+		case wild_magic.vert_mirror:
+			_v = 1 - _v;
+			break;
 
-        case wild_magic.rotate_90:
-            _temp = _u;
-            _u = 1 - _v;
-            _v = _temp;
+		case wild_magic.rotate_90:
+			_temp = _u;
+			_u = 1 - _v;
+			_v = _temp;
 
-            _temp = _uw;
-            _uw = _vh;
-            _vh = _temp;
-            break;
+			_temp = _uw;
+			_uw = _vh;
+			_vh = _temp;
+			break;
 
-        case wild_magic.rotate_180:
-            _u = 1 - _u;
-            _v = 1 - _v;
-            break;
+		case wild_magic.rotate_180:
+			_u = 1 - _u;
+			_v = 1 - _v;
+			break;
 
-        case wild_magic.rotate_270:
-            _temp = _u;
-            _u = _v;
-            _v = 1 - _temp;
+		case wild_magic.rotate_270:
+			_temp = _u;
+			_u = _v;
+			_v = 1 - _temp;
 
-            _temp = _uw;
-            _uw = _vh;
-            _vh = _temp;
-            break;
-    }
+			_temp = _uw;
+			_uw = _vh;
+			_vh = _temp;
+			break;
+	}
 
-    // Apply size effects to the existing offsets.
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_squish:
-            _uw *= reduce;
-            break;
+	// Apply size effects to the existing offsets.
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_squish:
+			_uw *= reduce;
+			break;
 
-        case wild_magic.vert_squish:
-            _vh *= reduce;
-            break;
+		case wild_magic.vert_squish:
+			_vh *= reduce;
+			break;
 
-        case wild_magic.horz_stretch:
-            _uw *= increase;
-            break;
+		case wild_magic.horz_stretch:
+			_uw *= increase;
+			break;
 
-        case wild_magic.vert_stretch:
-            _vh *= increase;
-            break;
+		case wild_magic.vert_stretch:
+			_vh *= increase;
+			break;
 
-        case wild_magic.shrink:
-            _uw *= reduce;
-            _vh *= reduce;
-            break;
+		case wild_magic.shrink:
+			_uw *= reduce;
+			_vh *= reduce;
+			break;
 
-        case wild_magic.enlarge:
-            _uw *= increase;
-            _vh *= increase;
-            break;
-    }
+		case wild_magic.enlarge:
+			_uw *= increase;
+			_vh *= increase;
+			break;
+	}
 
-    var _result_x;
-    var _result_y;
-    var _result_x_offset;
-    var _result_y_offset;
+	var _result_x;
+	var _result_y;
+	var _result_x_offset;
+	var _result_y_offset;
 
-    if (_final)
-    {
-        // Final pass: map center and offsets to enemy-field coordinates.
-        _result_x = global.enemy_field.x1 + _u * _target_w;
-        _result_y = global.enemy_field.y1 + _v * _target_h;
+	if (_final)
+	{
+		// Final pass: map center and offsets to enemy-field coordinates.
+		_result_x = global.enemy_field.x1 + _u * _target_w;
+		_result_y = global.enemy_field.y1 + _v * _target_h;
 
-        _result_x_offset = _uw * (_target_w / _place_w);
-        _result_y_offset = _vh * (_target_h / _place_h);
-    }
-    else
-    {
-        // Intermediate pass: remain in spell-field coordinates.
-        _result_x = global.spell_field.x1 + _u * _place_w;
-        _result_y = global.spell_field.y1 + _v * _place_h;
+		_result_x_offset = _uw * (_target_w / _place_w);
+		_result_y_offset = _vh * (_target_h / _place_h);
+	}
+	else
+	{
+		// Intermediate pass: remain in spell-field coordinates.
+		_result_x = global.spell_field.x1 + _u * _place_w;
+		_result_y = global.spell_field.y1 + _v * _place_h;
 
-        _result_x_offset = _uw;
-        _result_y_offset = _vh;
-    }
+		_result_x_offset = _uw;
+		_result_y_offset = _vh;
+	}
 	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
-    // Apply wind to the center.
-    switch (_wild_magic)
-    {
-        case wild_magic.wind_N:
-            _result_y -= _wind_shunt;
-            break;
+	// Apply wind to the center.
+	switch (_wild_magic)
+	{
+		case wild_magic.wind_N:
+			_result_y -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_NE:
-            _result_x += _wind_shunt;
-            _result_y -= _wind_shunt;
-            break;
+		case wild_magic.wind_NE:
+			_result_x += _wind_shunt;
+			_result_y -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_E:
-            _result_x += _wind_shunt;
-            break;
+		case wild_magic.wind_E:
+			_result_x += _wind_shunt;
+			break;
 
-        case wild_magic.wind_SE:
-            _result_x += _wind_shunt;
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_SE:
+			_result_x += _wind_shunt;
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_S:
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_S:
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_SW:
-            _result_x -= _wind_shunt;
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_SW:
+			_result_x -= _wind_shunt;
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_W:
-            _result_x -= _wind_shunt;
-            break;
+		case wild_magic.wind_W:
+			_result_x -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_NW:
-            _result_x -= _wind_shunt;
-            _result_y -= _wind_shunt;
-            break;
-    }
+		case wild_magic.wind_NW:
+			_result_x -= _wind_shunt;
+			_result_y -= _wind_shunt;
+			break;
+	}
 
-    return [
-        _result_x,
-        _result_y,
-        _result_x_offset,
-        _result_y_offset
-    ];
+	return [
+		_result_x,
+		_result_y,
+		_result_x_offset,
+		_result_y_offset
+	];
 }
 
 
 
 function cast_radius(_x, _y, _r)
 {
-    var loc = [_x, _y, _r, _r];
+	var loc = [_x, _y, _r, _r];
 
-    for (var i = 0; i < global.world; i++)
-    {
-        var _final = (i == global.world - 1);
+	for (var i = 0; i < global.world; i++)
+	{
+		var _final = (i == global.world - 1);
 
-        loc = warp_radius(
-            loc[0],
-            loc[1],
-            loc[2],
-            loc[3],
-            global.wild_magic[i],
-            _final
-        );
+		loc = warp_radius(
+			loc[0],
+			loc[1],
+			loc[2],
+			loc[3],
+			global.wild_magic[i],
+			_final
+		);
 
-    }
+	}
 	ruler_controller.mark=[]
 	the_march.step=1//march()
-    return loc;
+	return loc;
 }
 
 function warp_radius(	
@@ -222,363 +223,363 @@ function warp_radius(
 					_final = true,
 					_wind_shunt = global.w_str){
 						
-    var _place_w = global.spell_field.x2 - global.spell_field.x1;
-    var _place_h = global.spell_field.y2 - global.spell_field.y1;
-    var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
-    var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
+	var _place_w = global.spell_field.x2 - global.spell_field.x1;
+	var _place_h = global.spell_field.y2 - global.spell_field.y1;
+	var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
+	var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
 
-    // Normalize center within the spell field.
-    var _u = (_x - global.spell_field.x1) / _place_w;
-    var _v = (_y - global.spell_field.y1) / _place_h;
+	// Normalize center within the spell field.
+	var _u = (_x - global.spell_field.x1) / _place_w;
+	var _v = (_y - global.spell_field.y1) / _place_h;
 
-    var _temp;
+	var _temp;
 
-    // Transform center.
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_mirror:
-            _u = 1 - _u;
-            break;
+	// Transform center.
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_mirror:
+			_u = 1 - _u;
+			break;
 
-        case wild_magic.vert_mirror:
-            _v = 1 - _v;
-            break;
+		case wild_magic.vert_mirror:
+			_v = 1 - _v;
+			break;
 
-        case wild_magic.rotate_90:
-            _temp = _u;
-            _u = 1 - _v;
-            _v = _temp;
-            break;
+		case wild_magic.rotate_90:
+			_temp = _u;
+			_u = 1 - _v;
+			_v = _temp;
+			break;
 
-        case wild_magic.rotate_180:
-            _u = 1 - _u;
-            _v = 1 - _v;
-            break;
+		case wild_magic.rotate_180:
+			_u = 1 - _u;
+			_v = 1 - _v;
+			break;
 
-        case wild_magic.rotate_270:
-            _temp = _u;
-            _u = _v;
-            _v = 1 - _temp;
-            break;
-    }
+		case wild_magic.rotate_270:
+			_temp = _u;
+			_u = _v;
+			_v = 1 - _temp;
+			break;
+	}
 
-    // Determine ellipse scaling.
-    var _scale_x = 1;
-    var _scale_y = 1;
+	// Determine ellipse scaling.
+	var _scale_x = 1;
+	var _scale_y = 1;
 
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_squish:
-            _scale_y = reduce;
-            break;
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_squish:
+			_scale_y = reduce;
+			break;
 
-        case wild_magic.vert_squish:
-            _scale_x = reduce;
-            break;
+		case wild_magic.vert_squish:
+			_scale_x = reduce;
+			break;
 
-        case wild_magic.horz_stretch:
-            _scale_y = increase;
-            break;
+		case wild_magic.horz_stretch:
+			_scale_y = increase;
+			break;
 
-        case wild_magic.vert_stretch:
-            _scale_x = increase;
-            break;
+		case wild_magic.vert_stretch:
+			_scale_x = increase;
+			break;
 
-        case wild_magic.shrink:
-            _scale_x = reduce;
-            _scale_y = reduce;
-            break;
+		case wild_magic.shrink:
+			_scale_x = reduce;
+			_scale_y = reduce;
+			break;
 
-        case wild_magic.enlarge:
-            _scale_x = increase;
-            _scale_y = increase;
-            break;
-    }
+		case wild_magic.enlarge:
+			_scale_x = increase;
+			_scale_y = increase;
+			break;
+	}
 
-    // Apply size effects to the existing radii.
-    var _result_r1 = _r1 * _scale_x;
-    var _result_r2 = _r2 * _scale_y;
+	// Apply size effects to the existing radii.
+	var _result_r1 = _r1 * _scale_x;
+	var _result_r2 = _r2 * _scale_y;
 
-    // Rotate the ellipse's axes.
-    if (_wild_magic == wild_magic.rotate_90
-    || _wild_magic == wild_magic.rotate_270)
-    {
-        _temp = _result_r1;
-        _result_r1 = _result_r2;
-        _result_r2 = _temp;
-    }
+	// Rotate the ellipse's axes.
+	if (_wild_magic == wild_magic.rotate_90
+	|| _wild_magic == wild_magic.rotate_270)
+	{
+		_temp = _result_r1;
+		_result_r1 = _result_r2;
+		_result_r2 = _temp;
+	}
 
-    var _result_x;
-    var _result_y;
+	var _result_x;
+	var _result_y;
 
-    if (_final)
-    {
-        // Final pass: map the center to the enemy field.
-        _result_x = global.enemy_field.x1 + _u * _target_w;
-        _result_y = global.enemy_field.y1 + _v * _target_h;
-    }
-    else
-    {
-        // Intermediate pass: keep the center in the spell field.
-        _result_x = global.spell_field.x1 + _u * _place_w;
-        _result_y = global.spell_field.y1 + _v * _place_h;
-    }
+	if (_final)
+	{
+		// Final pass: map the center to the enemy field.
+		_result_x = global.enemy_field.x1 + _u * _target_w;
+		_result_y = global.enemy_field.y1 + _v * _target_h;
+	}
+	else
+	{
+		// Intermediate pass: keep the center in the spell field.
+		_result_x = global.spell_field.x1 + _u * _place_w;
+		_result_y = global.spell_field.y1 + _v * _place_h;
+	}
 	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
-    // Apply wind to the center.
-    switch (_wild_magic)
-    {
-        case wild_magic.wind_N:
-            _result_y -= _wind_shunt;
-            break;
+	// Apply wind to the center.
+	switch (_wild_magic)
+	{
+		case wild_magic.wind_N:
+			_result_y -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_NE:
-            _result_x += _wind_shunt;
-            _result_y -= _wind_shunt;
-            break;
+		case wild_magic.wind_NE:
+			_result_x += _wind_shunt;
+			_result_y -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_E:
-            _result_x += _wind_shunt;
-            break;
+		case wild_magic.wind_E:
+			_result_x += _wind_shunt;
+			break;
 
-        case wild_magic.wind_SE:
-            _result_x += _wind_shunt;
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_SE:
+			_result_x += _wind_shunt;
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_S:
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_S:
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_SW:
-            _result_x -= _wind_shunt;
-            _result_y += _wind_shunt;
-            break;
+		case wild_magic.wind_SW:
+			_result_x -= _wind_shunt;
+			_result_y += _wind_shunt;
+			break;
 
-        case wild_magic.wind_W:
-            _result_x -= _wind_shunt;
-            break;
+		case wild_magic.wind_W:
+			_result_x -= _wind_shunt;
+			break;
 
-        case wild_magic.wind_NW:
-            _result_x -= _wind_shunt;
-            _result_y -= _wind_shunt;
-            break;
-    }
+		case wild_magic.wind_NW:
+			_result_x -= _wind_shunt;
+			_result_y -= _wind_shunt;
+			break;
+	}
 
-    return [
-        _result_x,
-        _result_y,
-        _result_r1,
-        _result_r2
-    ];
+	return [
+		_result_x,
+		_result_y,
+		_result_r1,
+		_result_r2
+	];
 }
 
 
 
 function cast_line(_x1, _y1, _x2, _y2, _thickness, _range)
 {
-    var loc = [_x1, _y1, _x2, _y2, _thickness, _range];
+	var loc = [_x1, _y1, _x2, _y2, _thickness, _range];
 
-    for (var i = 0; i < global.world; i++)
-    {
-        var _final = (i == global.world - 1);
+	for (var i = 0; i < global.world; i++)
+	{
+		var _final = (i == global.world - 1);
 
-        loc = warp_line(
-            loc[0],
-            loc[1],
-            loc[2],
-            loc[3],
-            loc[4],
-            loc[5],
-            global.wild_magic[i],
-            _final
-        );
-    }
+		loc = warp_line(
+			loc[0],
+			loc[1],
+			loc[2],
+			loc[3],
+			loc[4],
+			loc[5],
+			global.wild_magic[i],
+			_final
+		);
+	}
 	ruler_controller.mark=[]
 	the_march.step=1//march()
-    return loc;
+	return loc;
 }
 
 function warp_line(
-    _x1,
-    _y1,
-    _x2,
-    _y2,
-    _thickness,
-    _range,
-    _wild_magic,
-    _final = true,
-    _wind_shunt = global.w_str
+	_x1,
+	_y1,
+	_x2,
+	_y2,
+	_thickness,
+	_range,
+	_wild_magic,
+	_final = true,
+	_wind_shunt = global.w_str
 ){
-    var _place_w = global.spell_field.x2 - global.spell_field.x1;
-    var _place_h = global.spell_field.y2 - global.spell_field.y1;
-    var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
-    var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
+	var _place_w = global.spell_field.x2 - global.spell_field.x1;
+	var _place_h = global.spell_field.y2 - global.spell_field.y1;
+	var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
+	var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
 
-    // Get original angle and rebuild endpoint using range.
-    var _angle = point_direction(_x1, _y1, _x2, _y2);
+	// Get original angle and rebuild endpoint using range.
+	var _angle = point_direction(_x1, _y1, _x2, _y2);
 
-    _x2 = _x1 + lengthdir_x(_range, _angle);
-    _y2 = _y1 + lengthdir_y(_range, _angle);
+	_x2 = _x1 + lengthdir_x(_range, _angle);
+	_y2 = _y1 + lengthdir_y(_range, _angle);
 
-    // Normalize both endpoints.
-    var _u1 = (_x1 - global.spell_field.x1) / _place_w;
-    var _v1 = (_y1 - global.spell_field.y1) / _place_h;
+	// Normalize both endpoints.
+	var _u1 = (_x1 - global.spell_field.x1) / _place_w;
+	var _v1 = (_y1 - global.spell_field.y1) / _place_h;
 
-    var _u2 = (_x2 - global.spell_field.x1) / _place_w;
-    var _v2 = (_y2 - global.spell_field.y1) / _place_h;
+	var _u2 = (_x2 - global.spell_field.x1) / _place_w;
+	var _v2 = (_y2 - global.spell_field.y1) / _place_h;
 
-    var _temp;
+	var _temp;
 
-    // Transform both endpoints using field coordinates.
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_mirror:
-            _u1 = 1 - _u1;
-            _u2 = 1 - _u2;
-            break;
+	// Transform both endpoints using field coordinates.
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_mirror:
+			_u1 = 1 - _u1;
+			_u2 = 1 - _u2;
+			break;
 
-        case wild_magic.vert_mirror:
-            _v1 = 1 - _v1;
-            _v2 = 1 - _v2;
-            break;
+		case wild_magic.vert_mirror:
+			_v1 = 1 - _v1;
+			_v2 = 1 - _v2;
+			break;
 
-        case wild_magic.rotate_90:
-            _temp = _u1;
-            _u1 = 1 - _v1;
-            _v1 = _temp;
+		case wild_magic.rotate_90:
+			_temp = _u1;
+			_u1 = 1 - _v1;
+			_v1 = _temp;
 
-            _temp = _u2;
-            _u2 = 1 - _v2;
-            _v2 = _temp;
-            break;
+			_temp = _u2;
+			_u2 = 1 - _v2;
+			_v2 = _temp;
+			break;
 
-        case wild_magic.rotate_180:
-            _u1 = 1 - _u1;
-            _v1 = 1 - _v1;
-            _u2 = 1 - _u2;
-            _v2 = 1 - _v2;
-            break;
+		case wild_magic.rotate_180:
+			_u1 = 1 - _u1;
+			_v1 = 1 - _v1;
+			_u2 = 1 - _u2;
+			_v2 = 1 - _v2;
+			break;
 
-        case wild_magic.rotate_270:
-            _temp = _u1;
-            _u1 = _v1;
-            _v1 = 1 - _temp;
+		case wild_magic.rotate_270:
+			_temp = _u1;
+			_u1 = _v1;
+			_v1 = 1 - _temp;
 
-            _temp = _u2;
-            _u2 = _v2;
-            _v2 = 1 - _temp;
-            break;
-    }
+			_temp = _u2;
+			_u2 = _v2;
+			_v2 = 1 - _temp;
+			break;
+	}
 
-    // Apply directional scaling around the transformed origin.
-    var _dx = _u2 - _u1;
-    var _dy = _v2 - _v1;
+	// Apply directional scaling around the transformed origin.
+	var _dx = _u2 - _u1;
+	var _dy = _v2 - _v1;
 
-    var _thickness_scale = 1;
-    var _range_scale = 1;
+	var _thickness_scale = 1;
+	var _range_scale = 1;
 
-    switch (_wild_magic)
-    {
-        case wild_magic.horz_squish:
-            _dx *= reduce;
-            _thickness_scale = reduce;
-            break;
+	switch (_wild_magic)
+	{
+		case wild_magic.horz_squish:
+			_dx *= reduce;
+			_thickness_scale = reduce;
+			break;
 
-        case wild_magic.vert_squish:
-            _dy *= reduce;
-            _range_scale = reduce;
-            break;
+		case wild_magic.vert_squish:
+			_dy *= reduce;
+			_range_scale = reduce;
+			break;
 
-        case wild_magic.horz_stretch:
-            _dx *= increase;
-            _thickness_scale = increase;
-            break;
+		case wild_magic.horz_stretch:
+			_dx *= increase;
+			_thickness_scale = increase;
+			break;
 
-        case wild_magic.vert_stretch:
-            _dy *= increase;
-            _range_scale = increase;
-            break;
+		case wild_magic.vert_stretch:
+			_dy *= increase;
+			_range_scale = increase;
+			break;
 
-        case wild_magic.shrink:
-            _dx *= reduce;
-            _dy *= reduce;
-            _thickness_scale = reduce;
-            _range_scale = reduce;
-            break;
+		case wild_magic.shrink:
+			_dx *= reduce;
+			_dy *= reduce;
+			_thickness_scale = reduce;
+			_range_scale = reduce;
+			break;
 
-        case wild_magic.enlarge:
-            _dx *= increase;
-            _dy *= increase;
-            _thickness_scale = increase;
-            _range_scale = increase;
-            break;
-    }
+		case wild_magic.enlarge:
+			_dx *= increase;
+			_dy *= increase;
+			_thickness_scale = increase;
+			_range_scale = increase;
+			break;
+	}
 
-    _u2 = _u1 + _dx;
-    _v2 = _v1 + _dy;
+	_u2 = _u1 + _dx;
+	_v2 = _v1 + _dy;
 
-    // Map coordinates to destination field.
-    var _result_x1;
-    var _result_y1;
-    var _result_x2;
-    var _result_y2;
+	// Map coordinates to destination field.
+	var _result_x1;
+	var _result_y1;
+	var _result_x2;
+	var _result_y2;
 
-    if (_final)
-    {
-        _result_x1 = global.enemy_field.x1 + _u1 * _target_w;
-        _result_y1 = global.enemy_field.y1 + _v1 * _target_h;
+	if (_final)
+	{
+		_result_x1 = global.enemy_field.x1 + _u1 * _target_w;
+		_result_y1 = global.enemy_field.y1 + _v1 * _target_h;
 
-        _result_x2 = global.enemy_field.x1 + _u2 * _target_w;
-        _result_y2 = global.enemy_field.y1 + _v2 * _target_h;
-    }
-    else
-    {
-        _result_x1 = global.spell_field.x1 + _u1 * _place_w;
-        _result_y1 = global.spell_field.y1 + _v1 * _place_h;
+		_result_x2 = global.enemy_field.x1 + _u2 * _target_w;
+		_result_y2 = global.enemy_field.y1 + _v2 * _target_h;
+	}
+	else
+	{
+		_result_x1 = global.spell_field.x1 + _u1 * _place_w;
+		_result_y1 = global.spell_field.y1 + _v1 * _place_h;
 
-        _result_x2 = global.spell_field.x1 + _u2 * _place_w;
-        _result_y2 = global.spell_field.y1 + _v2 * _place_h;
-    }
+		_result_x2 = global.spell_field.x1 + _u2 * _place_w;
+		_result_y2 = global.spell_field.y1 + _v2 * _place_h;
+	}
 
-    // Apply wind to both endpoints.
-    if (_wild_magic mod 2 == 0)
-        _wind_shunt *= diag_mod;
+	// Apply wind to both endpoints.
+	if (_wild_magic mod 2 == 0)
+		_wind_shunt *= diag_mod;
 
-    var _wind_x = 0;
-    var _wind_y = 0;
+	var _wind_x = 0;
+	var _wind_y = 0;
 
-    switch (_wild_magic)
-    {
-        case wild_magic.wind_N:  _wind_y = -1; break;
-        case wild_magic.wind_NE: _wind_x = 1; _wind_y = -1; break;
-        case wild_magic.wind_E:  _wind_x = 1; break;
-        case wild_magic.wind_SE: _wind_x = 1; _wind_y = 1; break;
-        case wild_magic.wind_S:  _wind_y = 1; break;
-        case wild_magic.wind_SW: _wind_x = -1; _wind_y = 1; break;
-        case wild_magic.wind_W:  _wind_x = -1; break;
-        case wild_magic.wind_NW: _wind_x = -1; _wind_y = -1; break;
-    }
+	switch (_wild_magic)
+	{
+		case wild_magic.wind_N:  _wind_y = -1; break;
+		case wild_magic.wind_NE: _wind_x = 1; _wind_y = -1; break;
+		case wild_magic.wind_E:  _wind_x = 1; break;
+		case wild_magic.wind_SE: _wind_x = 1; _wind_y = 1; break;
+		case wild_magic.wind_S:  _wind_y = 1; break;
+		case wild_magic.wind_SW: _wind_x = -1; _wind_y = 1; break;
+		case wild_magic.wind_W:  _wind_x = -1; break;
+		case wild_magic.wind_NW: _wind_x = -1; _wind_y = -1; break;
+	}
 
-    _result_x1 += _wind_x * _wind_shunt;
-    _result_y1 += _wind_y * _wind_shunt;
+	_result_x1 += _wind_x * _wind_shunt;
+	_result_y1 += _wind_y * _wind_shunt;
 
-    _result_x2 += _wind_x * _wind_shunt;
-    _result_y2 += _wind_y * _wind_shunt;
+	_result_x2 += _wind_x * _wind_shunt;
+	_result_y2 += _wind_y * _wind_shunt;
 
-    // Calculate actual resulting range.
-    var _result_range = point_distance(
-        _result_x1, _result_y1,
-        _result_x2, _result_y2
-    );
+	// Calculate actual resulting range.
+	var _result_range = point_distance(
+		_result_x1, _result_y1,
+		_result_x2, _result_y2
+	);
 
-    return [
-        _result_x1,
-        _result_y1,
-        _result_x2,
-        _result_y2,
-        _thickness * _thickness_scale,
-        _result_range
-    ];
+	return [
+		_result_x1,
+		_result_y1,
+		_result_x2,
+		_result_y2,
+		_thickness * _thickness_scale,
+		_result_range
+	];
 }
 
 
@@ -613,171 +614,172 @@ function call_wild_magic()
 	global.w_str = (_wind_str+1)*base_wind_str
 	var _wind_direction = irandom(7)
 	
-    var _magic = [];
-    var blind_pick = false;
+	var _magic = [];
+	var blind_pick = false;
 	global.blind = false
 
-    var _mirror = [
-        wild_magic.horz_mirror,
-        wild_magic.vert_mirror
-    ];
+	var _mirror = [
+		wild_magic.horz_mirror,
+		wild_magic.vert_mirror
+	];
 	
 	var _mirror_spr = [
-        horz_mirror,
-        vert_mirror
-    ];
+		horz_mirror,
+		vert_mirror
+	];
 
-    var _rotate = [
-        wild_magic.rotate_90,
-        wild_magic.rotate_180,
-        wild_magic.rotate_270
-    ];
+	var _rotate = [
+		wild_magic.rotate_90,
+		wild_magic.rotate_180,
+		wild_magic.rotate_270
+	];
 	
 	var _rotate_spr = [
-        rotate_90_R,
-        rotate_180,
-        rotate_90_L
-    ];
+		rotate_90_R,
+		rotate_180,
+		rotate_90_L
+	];
 
-    var _squish = [
-        wild_magic.horz_squish,
-        wild_magic.vert_squish,
-        wild_magic.shrink
-    ];
+	var _squish = [
+		wild_magic.horz_squish,
+		wild_magic.vert_squish,
+		wild_magic.shrink
+	];
 
-    var _squish_spr = [
-        horz_squish,
-        vert_squish,
-        shrink
-    ];
+	var _squish_spr = [
+		horz_squish,
+		vert_squish,
+		shrink
+	];
 
-    var _stretch = [
-        wild_magic.horz_stretch,
-        wild_magic.vert_stretch,
-        wild_magic.enlarge
-    ];
+	var _stretch = [
+		wild_magic.horz_stretch,
+		wild_magic.vert_stretch,
+		wild_magic.enlarge
+	];
 	
-	    var _stretch_spr = [
-        horz_stretch,
-        vert_stretch,
-        enlarge
-    ];
+		var _stretch_spr = [
+		horz_stretch,
+		vert_stretch,
+		enlarge
+	];
 
-    var _wind = [
-        wild_magic.wind_N,
-        wild_magic.wind_NE,
-        wild_magic.wind_E,
-        wild_magic.wind_SE,
-        wild_magic.wind_S,
-        wild_magic.wind_SW,
-        wild_magic.wind_W,
-        wild_magic.wind_NW
-    ];
+	var _wind = [
+		wild_magic.wind_N,
+		wild_magic.wind_NE,
+		wild_magic.wind_E,
+		wild_magic.wind_SE,
+		wild_magic.wind_S,
+		wild_magic.wind_SW,
+		wild_magic.wind_W,
+		wild_magic.wind_NW
+	];
 	
-	    var _wind_dir_text = [
-        "Northern",
-        "North Eastern",
-        "Eastern",
-        "South Eastern",
-        "Southern",
-        "South Western",
-        "Western",
-        "North Western"
-    ];
+		var _wind_dir_text = [
+		"Northern",
+		"North Eastern",
+		"Eastern",
+		"South Eastern",
+		"Southern",
+		"South Western",
+		"Western",
+		"North Western"
+	];
 	global.w_dir = _wind_dir_text[_wind_direction]
 	set_global_tooltip()
-    for (var i = 0; i < global.world; i++)
-    {
-        var _type = irandom(magic_types.COUNT - 1);
+	for (var i = 0; i < global.world; i++)
+	{
+		var _type = irandom(magic_types.COUNT - 1);
 
-        // Allow blind only once.
-        if (_type == magic_types.blind)
-        {
+		// Allow blind only once.
+		if (_type == magic_types.blind)
+		{
+			
 			//weight down
-			if irandom(1) _type = irandom(magic_types.COUNT - 1); //makes blind show up less
-            if (blind_pick)
-            {
-                while (_type == magic_types.blind)
-                {
-                    _type = irandom(magic_types.COUNT - 1);
-                }
-            }
-            else
-            {
-                blind_pick = true;
-            }
-        }
+			if irandom(keep_roll)!=keep_roll _type = irandom(magic_types.COUNT - 1); //makes blind show up less
+			if (blind_pick)
+			{
+				while (_type == magic_types.blind)
+				{
+					_type = irandom(magic_types.COUNT - 1);
+				}
+			}
+			else
+			{
+				blind_pick = true;
+			}
+		}
 		var _ran = 0
 		global.wild_magic[i]=0
-        switch (_type)
-        {
-            case magic_types.none:
-                _magic[i] = [wild_magic.no_effect,null_magic,0,global.tooltip.null_magic]; //change sprite
-                break;
+		switch (_type)
+		{
+			case magic_types.none:
+				_magic[i] = [wild_magic.no_effect,null_magic,0,global.tooltip.null_magic]; //change sprite
+				break;
 
-            case magic_types.blind:
-                _magic[i] = [wild_magic.blind,blind,0,global.tooltip.blind];
+			case magic_types.blind:
+				_magic[i] = [wild_magic.blind,blind,0,global.tooltip.blind];
 				global.blind = true
 				global.wild_magic[i]=1
-                break;
+				break;
 
-            case magic_types.mirror:
+			case magic_types.mirror:
 				_ran = irandom(array_length(_mirror) - 1)
 				_magic[i] = [
-				    _mirror[_ran],
-				    _mirror_spr[_ran],
-				    0,
-				    global.tooltip[$ sprite_get_name(_mirror_spr[_ran])]
+					_mirror[_ran],
+					_mirror_spr[_ran],
+					0,
+					global.tooltip[$ sprite_get_name(_mirror_spr[_ran])]
 				];
 				global.wild_magic[i]=_mirror[_ran]
-                break;
+				break;
 
-            case magic_types.rotate:
+			case magic_types.rotate:
 				_ran = irandom(array_length(_rotate) - 1)
-                _magic[i] = [
-				    _rotate[_ran],
-				    _rotate_spr[_ran],
-				    0,
-				    global.tooltip[$ sprite_get_name(_rotate_spr[_ran])]
+				_magic[i] = [
+					_rotate[_ran],
+					_rotate_spr[_ran],
+					0,
+					global.tooltip[$ sprite_get_name(_rotate_spr[_ran])]
 				];
 				global.wild_magic[i]=_rotate[_ran]
-                break;
+				break;
 
-            case magic_types.squish:
+			case magic_types.squish:
 				_ran = irandom(array_length(_squish) - 1)
 				_magic[i] = [
-				    _squish[_ran],
-				    _squish_spr[_ran],
-				    0,
-				    global.tooltip[$ sprite_get_name(_squish_spr[_ran])]
+					_squish[_ran],
+					_squish_spr[_ran],
+					0,
+					global.tooltip[$ sprite_get_name(_squish_spr[_ran])]
 				];
 				global.wild_magic[i]=_squish[_ran]
-                break;
+				break;
 
-            case magic_types.stretch:
+			case magic_types.stretch:
 				_ran = irandom(array_length(_stretch) - 1)
 				_magic[i] = [
-				    _stretch[_ran],
-				    _stretch_spr[_ran],
-				    0,
-				    global.tooltip[$ sprite_get_name(_stretch_spr[_ran])]
+					_stretch[_ran],
+					_stretch_spr[_ran],
+					0,
+					global.tooltip[$ sprite_get_name(_stretch_spr[_ran])]
 				];
 				global.wild_magic[i]=_stretch[_ran]
-                break;
+				break;
 
-            case magic_types.wind:
+			case magic_types.wind:
 				var _sprite_name = $"spr_{global.directions[_wind_direction]}";
 				var _wind_spr = asset_get_index(_sprite_name);
-                _magic[i] = [
+				_magic[i] = [
 					_wind[_wind_direction],
 					_wind_spr,_wind_str,
 					global.tooltip.wind
 				];
 				global.wild_magic[i]=_wind[_wind_direction] //might need to deconstruct
-                break;
-        }
-    }
-    return _magic;
+				break;
+		}
+	}
+	return _magic;
 }
 
 

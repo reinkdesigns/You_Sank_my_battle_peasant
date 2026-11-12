@@ -1,13 +1,13 @@
 
 
 enum wild_magic{
-    no_effect,
+	no_effect,
 	blind,
-    horz_mirror,
-    vert_mirror,
-    rotate_90,
-    rotate_180,
-    rotate_270,
+	horz_mirror,
+	vert_mirror,
+	rotate_90,
+	rotate_180,
+	rotate_270,
 	horz_squish,
 	vert_squish,
 	shrink,

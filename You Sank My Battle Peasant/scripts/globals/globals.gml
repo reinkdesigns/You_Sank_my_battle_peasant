@@ -1,7 +1,7 @@
 #macro diag_mod 0.707
 #macro player_start_location 321
 #macro unit_location_offset_x 114
-#macro unit_location_offset_y 155
+#macro unit_location_offset_y 150
 #macro floating_unit_y_offset 30
 #macro field_x_offset 685
 
@@ -115,27 +115,31 @@ global.unit_animation	=["Idle","Walk","Hurt","Death","Attack01","Attack02"]
 
 function UnitData(_unit, _overrides = {}) constructor
 {
-    hp				= variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100;
-    mp				= variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100;
-	armor				= variable_struct_exists(_overrides, "armor") ? _overrides.armor : flesh;
-	attack_1_damage	= variable_struct_exists(_overrides, "attack_1_damage") ? _overrides.attack_1_damage : 10;		
-	attack_2_damage	= variable_struct_exists(_overrides, "attack_2_damage") ? _overrides.attack_2_damage : 20;		
-	field_movement	= variable_struct_exists(_overrides, "field_movement") ? _overrides.field_movement : 100;		
-	march_movement	= variable_struct_exists(_overrides, "march_movement") ? _overrides.march_movement : 1;	
-    can_cast		= variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false;
-    can_block		= variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false;
-    is_summon		= variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false;
-    is_ranged		= variable_struct_exists(_overrides, "is_ranged") ? _overrides.is_ranged : false;
-    range			= variable_struct_exists(_overrides, "range") ? _overrides.range : false;
-    unit			= _unit + "_";
-    special			= variable_struct_exists(_overrides, "special") ? _overrides.special : false;
-    special2		= variable_struct_exists(_overrides, "special2") ? _overrides.special2 : false;
-    float			= variable_struct_exists(_overrides, "float") ? _overrides.float : false;
-    description		= variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text";
+	hp						= variable_struct_exists(_overrides, "hp") ? _overrides.hp : 100;
+	mp						= variable_struct_exists(_overrides, "mp") ? _overrides.mp : 100;
+	armor					= variable_struct_exists(_overrides, "armor") ? _overrides.armor : flesh;
+	attack_1_damage			= variable_struct_exists(_overrides, "attack_1_damage") ? _overrides.attack_1_damage : 10;		
+	attack_2_damage			= variable_struct_exists(_overrides, "attack_2_damage") ? _overrides.attack_2_damage : 20;		
+	field_movement			= variable_struct_exists(_overrides, "field_movement") ? _overrides.field_movement : 100;		
+	march_movement			= variable_struct_exists(_overrides, "march_movement") ? _overrides.march_movement : 1;	
+	can_cast				= variable_struct_exists(_overrides, "can_cast") ? _overrides.can_cast : false;
+	cast_cost_heal			= variable_struct_exists(_overrides, "cast_cost_heal") ? _overrides.cast_cost_heal : 0;
+	cast_cost_damage		= variable_struct_exists(_overrides, "cast_cost_damage") ? _overrides.cast_cost_damage : 0;
+	can_block				= variable_struct_exists(_overrides, "can_block") ? _overrides.can_block : false;
+	is_summon				= variable_struct_exists(_overrides, "is_summon") ? _overrides.is_summon : false;
+	is_ranged				= variable_struct_exists(_overrides, "is_ranged") ? _overrides.is_ranged : false;
+	is_healer				= variable_struct_exists(_overrides, "is_healer") ? _overrides.is_healer : false;
+	heal_type				= variable_struct_exists(_overrides, "heal_type") ? _overrides.heal_type : false;
+	range					= variable_struct_exists(_overrides, "range") ? _overrides.range : false;
+	unit					= _unit + "_";
+	special					= variable_struct_exists(_overrides, "special") ? _overrides.special : false;
+	special2				= variable_struct_exists(_overrides, "special2") ? _overrides.special2 : false;
+	float					= variable_struct_exists(_overrides, "float") ? _overrides.float : false;
+	description				= variable_struct_exists(_overrides, "description") ? _overrides.description : "Add Text";
 }
 
 //armor types
-#macro base_armor_mod 17 //yes this is a wc3 reference lol
+#macro base_armor_mod 8 
 
 #macro flesh		0
 #macro cloth		1
@@ -159,48 +163,48 @@ function UnitData(_unit, _overrides = {}) constructor
 
 global.unit = {
 	
-    Archer : new UnitData("Archer", {
-		hp			: 100,
-		mp			: 100,
-		armor		: cloth,
-        is_ranged	: "Both",
-		range		: 11,
-        special		: Arrow01,
-        special2	: Arrow02
+	Archer : new UnitData("Archer", {
+		hp				: 100,
+		mp				: 100,
+		armor			: cloth,
+		is_ranged		: "Both",
+		range			: 11,
+		special			: Arrow01,
+		special2		: Arrow02
 		}),
 	
 	Armored_Axeman : new UnitData("Armored_Axeman", {
 		hp			: 100,
 		mp			: 100,
 		armor		: plate,
-    }),
+	}),
 	
 	Armored_Orc : new UnitData("Armored_Orc", {
 		hp			: 100,
 		mp			: 100,
 		armor		: orc_plate,
 		can_block	: true,
-    }),
+	}),
 
 	Armored_Skeleton : new UnitData("Armored_Skeleton", {
 		hp			: 100,
 		mp			: 100,
 		armor		: plate,
 		is_summon	: true,
-    }),
+	}),
 	
 	Bat : new UnitData("Bat", {
 		hp			: 100,
 		mp			: 100,
 		float		: true,
-    }),
+	}),
 	
 	Black_Knight_A : new UnitData("Black_Knight_A", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_plate,
 		
-    }),
+	}),
 	
 	Black_Knight_B : new UnitData("Black_Knight_B", {
 		hp			: 100,
@@ -210,7 +214,7 @@ global.unit = {
 		is_ranged	: "Attack02",
 		range		: 11,
 		special		: Cannonball,
-    }),
+	}),
 	
 	Black_Knight_C : new UnitData("Black_Knight_C", {
 		hp			: 100,
@@ -219,19 +223,19 @@ global.unit = {
 		can_cast	: "Attack02",
 		range		: 11,
 		special		: Black_Knight_Beam,
-    }),
+	}),
 		
 	Blood_Monster : new UnitData("Blood_Monster", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_flesh,
-    }),
+	}),
 	
 	Demon_A : new UnitData("Demon_A", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_mail,
-    }),
+	}),
 	
 	Demon_B : new UnitData("Demon_B", {
 		hp			: 100,
@@ -240,32 +244,32 @@ global.unit = {
 		is_ranged	: "Attack01",
 		range		: 11,
 		special		: Arrow04
-    }),
+	}),
 	
 	Demon_C : new UnitData("Demon_C", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_cloth,
 		float		: true,
-    }),
+	}),
 	
 	Demon_D : new UnitData("Demon_D", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_mail,
-    }),
+	}),
 	
 	Demon_E : new UnitData("Demon_E", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_mail,
-    }),
+	}),
 
 	Demoness_A : new UnitData("Demoness_A", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_cloth,
-    }),
+	}),
 
 
 	Demoness_B : new UnitData("Demoness_B", {
@@ -273,19 +277,19 @@ global.unit = {
 		mp			: 100,
 		armor		: demon_cloth,
 		float		: true,
-    }),
+	}),
 	
 	Elite_Orc : new UnitData("Elite_Orc", {
 		hp			: 100,
 		mp			: 100,
 		armor		: orc_plate,
-    }),
+	}),
 
-    Eyeball_Monster : new UnitData("Eyeball_Monster", {
+	Eyeball_Monster : new UnitData("Eyeball_Monster", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_flesh,
-        is_ranged	: "Attack02",
+		is_ranged	: "Attack02",
 		range		: 2,
 		}),
 		
@@ -293,7 +297,7 @@ global.unit = {
 		hp			: 100,
 		mp			: 100,
 		armor		: stone,
-    }),		
+	}),		
 		
 	Ghostfire : new UnitData("Ghostfire", {
 		hp			: 100,
@@ -302,59 +306,59 @@ global.unit = {
 		float		: true,
 		is_ranged	: "Attack02",
 		range		: 2,
-    }),		
+	}),		
 		
 	Greatsword_Skeleton : new UnitData("Greatsword_Skeleton", {
 		hp			: 100,
 		mp			: 100,
 		armor		: mail,
 		is_summon	: true
-    }),				
+	}),				
 		
 	Hellbat : new UnitData("Hellbat", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_flesh,
 		float		: true,
-    }),
+	}),
 	
 	Hellhound : new UnitData("Hellhound", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_flesh,
-    }),
+	}),
 	
 	Knight : new UnitData("Knight", {
 		hp			: 100,
 		mp			: 100,
 		armor		: plate,
 		can_block	: true,
-    }),
+	}),
 		
 	Knight_Templar : new UnitData("Knight_Templar", {
 		hp			: 100,
 		mp			: 100,
 		armor		: plate,
 		can_block	: true,
-    }),	
+	}),	
 	
 	Lancer : new UnitData("Lancer", {
 		hp			: 100,
 		mp			: 100,
 		armor		: plate,
-    }),	
+	}),	
 	
 	Lava_Slime : new UnitData("Lava_Slime", {
 		hp			: 100,
 		mp			: 100,
 		armor		: slime,
-    }),		
+	}),		
 	
 	Minotaur : new UnitData("Minotaur", {
 		hp			: 100,
 		mp			: 100,
 		armor		: demon_mail,
-    }),	
+	}),	
 	
 	Necromancer : new UnitData("Necromancer", {
 		hp			: 100,
@@ -362,30 +366,34 @@ global.unit = {
 		armor		: cloth,
 		can_cast	: "Attack02",
 		special		: Necromancer_Attack_Effect,
-    }),	
+	}),	
 	
 	Orc : new UnitData("Orc", {
 		hp			: 100,
 		mp			: 100,
 		armor		: orc_flesh,
-    }),		
+	}),		
 	
 	Orc_Rider : new UnitData("Orc_Rider", {
 		hp			: 100,
 		mp			: 100,
 		armor		: orc_mail,
 		can_block	: true,
-    }),		
+	}),		
 
 	Priest : new UnitData("Priest", {
-		hp			: 100,
-		mp			: 100,
-		armor		: cloth,
-		can_cast	: "Both",
-		range		: 11,
-		special		: Priest_Attack_effect,
-		special2	: Priest_Heal_effect,
-    }),		
+		hp				: 100,
+		mp				: 100,
+		armor			: cloth,
+		is_healer		: true,
+		heal_type		: "holy",
+		can_cast		: "Both",
+		cast_cost_heal	: 25,
+		cast_cost_damage: 25,
+		range			: 11,
+		special			: Priest_Attack_effect,
+		special2		: Priest_Heal_effect,
+	}),		
 	
 	Skeleton : new UnitData("Skeleton", {
 		hp			: 100,
@@ -393,7 +401,7 @@ global.unit = {
 		armor		: bone,
 		can_block	: true,
 		is_summon	: true,
-    }),	
+	}),	
 	
 	Skeleton_Archer : new UnitData("Skeleton_Archer", {
 		hp			: 100,
@@ -404,45 +412,48 @@ global.unit = {
 		special		: Arrow03,
 		special2 	: Arrow01,
 		is_summon	: true,
-    }),	
+	}),	
 	
 	Slime : new UnitData("Slime", {
 		hp			: 100,
 		mp			: 100,
 		armor		: slime,
-    }),	
+	}),	
 	
 	Soldier : new UnitData("Soldier", {
 		hp			: 100,
 		mp			: 100,
 		armor		: mail,
-    }),		
+	}),		
 	
 	Swordsman : new UnitData("Swordsman", {
 		hp			: 100,
 		mp			: 100,
 		armor		: mail,
-    }),	
+	}),	
 	
 	Warlock : new UnitData("Warlock", {
-		hp			: 100,
-		mp			: 100,
-		armor		: demon_cloth,
-		can_cast	: "Both",
-		range		: 11,
-		special		: Warlock_Effect,
-		special2	: Black_Knight_Beam,
-    }),	
+		hp					: 100,
+		mp					: 100,
+		armor				: demon_cloth,
+		is_healer			: true,
+		heal_type			: "blood",
+		can_cast			: "Both",
+		cast_cost_damage	: 25,
+		range				: 11,
+		special				: Warlock_Effect,
+		special2			: Black_Knight_Beam,
+	}),	
 	
 	Werebear : new UnitData("Werebear", {
 		hp			: 100,
 		mp			: 100,
-    }),	
+	}),	
 	
 	Werewolf : new UnitData("Werewolf", {
 		hp			: 100,
 		mp			: 100,
-    }),	
+	}),	
 	
 	Wizard : new UnitData("Wizard", {
 		hp			: 100,
@@ -452,7 +463,7 @@ global.unit = {
 		range		: 11,
 		special		: Wizard_Firebolt_Effect,
 		special2	: Wizard_Ice_Effect,
-    }),	
+	}),	
 	
 }
 

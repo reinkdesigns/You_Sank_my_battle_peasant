@@ -6,96 +6,82 @@ if (instance_exists(obj_circle_spell)||
 	all_busy = true
 	}
 
-var units_left = 0
-with obj_enemy_march other.units_left=1
+units_left = 0
+with obj_enemy_march other.units_left += 1
 if units_left = 0 && global.game_start {
 	report_message("You Win!")
 	game_end();
 }
 
 
-if (step == 1)
-{
-    if (all_busy) exit;
+if (step == 1){
+	if (all_busy) exit;
 
-    var i = resolve_index;
+	var i = resolve_index;
 
-    var _ground_unit = instance_position(
-        global.march_posistion[i].x,
-        global.march_posistion[i].y,
-        obj_enemy_march
-    );
+	var _ground_unit = instance_position(
+		global.march_posistion[i].x,
+		global.march_posistion[i].y,
+		obj_enemy_march
+	);
 
-    var _float_unit = instance_position(
-        global.march_posistion_float[i].x,
-        global.march_posistion_float[i].y,
-        obj_enemy_march
-    );
+	var _float_unit = instance_position(
+		global.march_posistion_float[i].x,
+		global.march_posistion_float[i].y,
+		obj_enemy_march
+	);
 
-    // Process one unit at a time.
-    if (instance_exists(_ground_unit))
-    {
-        with (_ground_unit)
-        {
-            march()
-        }
+	// Process one unit at a time.
+	if (instance_exists(_ground_unit)) {
+		with (_ground_unit) march()
+		if (all_busy) exit;
+	}
 
-        if (all_busy) exit;
-    }
+	if (instance_exists(_float_unit)){
+		with (_float_unit) march()
+		if (all_busy) exit;
+	}
 
-    if (instance_exists(_float_unit))
-    {
-        with (_float_unit)
-        {
-            march()
-        }
-
-        if (all_busy) exit;
-    }
-
-    resolve_index++;
+	resolve_index++;
 }
 
 
-if (step == 2)
-{
-    if (all_busy) exit;
+if (step == 2){
+	if (all_busy) exit;
 
-    var i = resolve_index;
+	var i = resolve_index;
 
-    var _ground_unit = instance_position(
-        global.march_posistion[i].x,
-        global.march_posistion[i].y,
-        obj_enemy_march
-    );
+	var _ground_unit = instance_position(
+		global.march_posistion[i].x,
+		global.march_posistion[i].y,
+		obj_enemy_march
+	);
 
-    var _float_unit = instance_position(
-        global.march_posistion_float[i].x,
-        global.march_posistion_float[i].y,
-        obj_enemy_march
-    );
+	var _float_unit = instance_position(
+		global.march_posistion_float[i].x,
+		global.march_posistion_float[i].y,
+		obj_enemy_march
+	);
 
-    if (instance_exists(_ground_unit))
-    {
-        with (_ground_unit)
-        {
-            attack()
-        }
+	if (instance_exists(_ground_unit)){
+		with (_ground_unit)
+		{
+			attack()
+		}
 
-        if (all_busy) exit;
-    }
+		if (all_busy) exit;
+	}
 
-    if (instance_exists(_float_unit))
-    {
-        with (_float_unit)
-        {
-            attack()
-        }
+	if (instance_exists(_float_unit)){
+		with (_float_unit)
+		{
+			attack()
+		}
 
-        if (all_busy) exit;
-    }
+		if (all_busy) exit;
+	}
 
-    resolve_index++;
+	resolve_index++;
 }
 
 if resolve_index >= array_length(global.march_posistion) && !all_busy {

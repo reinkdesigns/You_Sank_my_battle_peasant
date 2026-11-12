@@ -14,22 +14,22 @@ var move_y = 0;
 
 
 if (_distance > 0) {
-    // Get the exact, fluid angle (0 to 360 degrees) to the destination
-    var _angle = point_direction(x, y, dest_x, dest_y);
-    
-    // lengthdir splits your speed perfectly based on the angle (no diagonal modifier needed!)
-    move_x = lengthdir_x(1, _angle);
-    move_y = lengthdir_y(1, _angle);
+	// Get the exact, fluid angle (0 to 360 degrees) to the destination
+	var _angle = point_direction(x, y, dest_x, dest_y);
+	
+	// lengthdir splits your speed perfectly based on the angle (no diagonal modifier needed!)
+	move_x = lengthdir_x(1, _angle);
+	move_y = lengthdir_y(1, _angle);
 }
 
 
 // If we are closer than our movement speed, snap to target. Otherwise, move.
 if (_distance <= _speed) {
-    x = dest_x;
-    y = dest_y;
+	x = dest_x;
+	y = dest_y;
 } else {
-    x += move_x * _speed;
-    y += move_y * _speed;
+	x += move_x * _speed;
+	y += move_y * _speed;
 }
 
 
@@ -65,13 +65,13 @@ if take_damage{
 	var damage_taken = mitigate(take_damage)
 	if damage_taken >0 {
 		count = 2;
-        parent_unit.count = 2;
-        parent_unit._hp -= damage_taken;
+		parent_unit.count = 2;
+		parent_unit._hp -= damage_taken;
 	}
 	take_damage = 0
 }
 
-     
+	 
 
 
 if _alpha < 1 && global.blind = false _alpha += 0.1

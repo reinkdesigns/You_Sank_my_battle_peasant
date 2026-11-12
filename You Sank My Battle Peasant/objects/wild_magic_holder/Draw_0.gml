@@ -61,7 +61,7 @@ if tooltip_mouseover != -1 {
 
 	for (var i = 0; i < _lines; i++)
 	{
-	    var _len = string_width(tooltip_text[i]);
+		var _len = string_width(tooltip_text[i]);
 		_longest_length = max(_longest_length,_len)
 	}
 

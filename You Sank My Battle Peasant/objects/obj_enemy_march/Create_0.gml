@@ -8,7 +8,11 @@ monster = 0
 _unit = global.unit_type[monster]
 _struct_unit = global.unit[$ _unit]
 _hp = 10
+_max_hp=10
+_mp = 0
+_max_mp = 0
 _dead = false
+_rank = 1
 _x=x
 _x_last = _x
 _y = y
@@ -44,63 +48,117 @@ child_unit.image_speed = image_speed
 march = function()
 {
 	child_unit.march()
-    var _pos = global.march_posistion;
+	var _pos = global.march_posistion;
 
-    if (_struct_unit.float)
-        _pos = global.march_posistion_float;
+	if (_struct_unit.float)
+		_pos = global.march_posistion_float;
 
-    // Start at the desired landing position.
-    var _target = m_pos - movement;
+	// Start at the desired landing position.
+	var _target = m_pos - movement;
 
-    // Clamp to the valid range.
-    _target = max(1, _target);
+	// Clamp to the valid range.
+	_target = max(1, _target);
+	var _boss_mod =_size==boss_unit ? -25:0
 
-    // Find the correct unit type to check for occupancy.
-    var _occupied_object = obj_enemy_march;
 
-    // Search from the desired position toward position 1.
-    while (_target < m_pos)
-    {
-        var _occupied = instance_position(
-            _pos[_target].x,
-            _pos[_target].y,
-            _occupied_object
-        );
+	// Find the correct unit type to check for occupancy.
+	var _occupied_object = obj_enemy_march;
 
-        // Ignore this unit itself.
-        if (_occupied == id)
-        {
-            _target++;
-            continue;
-        }
+	// Search from the desired position toward position 1.
+	while (_target < m_pos)
+	{
+		var _occupied = instance_position(
+			_pos[_target].x,
+			_pos[_target].y+_boss_mod,
+			_occupied_object
+		);
 
-        // If occupied by another unit, try a closer position.
-        if (instance_exists(_occupied))
-        {
-            _target++;
-            continue;
-        }
+		// Ignore this unit itself.
+		if (_occupied == id)
+		{
+			_target++;
+			continue;
+		}
 
-        // Found an available position.
-        break;
-    }
+		// If occupied by another unit, try a closer position.
+		if (instance_exists(_occupied))
+		{
+			_target++;
+			continue;
+		}
 
-    // Only move if a valid position was found.
-    if (_target < m_pos)
-    {
-        m_pos = _target;
-        dest_x = _pos[m_pos].x;
-        dest_y = _pos[m_pos].y;
-    }
+		// Found an available position.
+		break;
+	}
+
+	// Only move if a valid position was found.
+	if (_target < m_pos)
+	{
+		m_pos = _target;
+		dest_x = _pos[m_pos].x;
+		dest_y = _pos[m_pos].y+_boss_mod;
+	}
 }
 attack = function(){
-	if m_pos<= attack_range{
-	count = 4
-	//do attack stuff
+	var can_attack = true
+	if _struct_unit.is_healer{
+		var _heal_target = [];
+
+		with (obj_enemy_march) if other != self array_push(_heal_target, id);
+
+		var target_hp = [];
+
+		for (var i = 0; i < array_length(_heal_target); i++) {
+			var _unit = _heal_target[i];
+
+			if (_unit._hp >= _unit._max_hp)
+				continue;
+
+			array_push(target_hp, {
+			    id: _unit,
+			    hp: _unit._hp
+			});
+
+			array_sort(target_hp, function(a, b) {
+			    return a.hp - b.hp;
+			});
+		}
+
+				// Sort by missing HP, highest to lowest
+				if array_length(target_hp) > 0 {
+					var _target = target_hp[0].id;
+
+					if	_struct_unit.heal_type == "holy"&&
+						_mp>=_cast_cost_heal{
+							_mp -= _cast_cost_heal
+							var heal_amount = ceil(_target._max_hp*.05*_rank)
+							_target._hp = min(_target._hp + heal_amount, _target._max_hp);
+							can_attack = false;
+							count = 5;
+							image_index = 0
+					}
+
+					if	_struct_unit.heal_type == "blood" &&
+						_hp > 15 &&
+						_target._hp < _target._max_hp / 2 {
+							_hp -= 15;
+							var heal_amount = ceil(_target._max_hp*.1*_rank)
+							_target._hp = min(_target._hp + heal_amount, _target._max_hp);
+							can_attack = false;
+							count = 5;
+							image_index = 0
+					}
+				}
+			}
+		
+		if m_pos<= attack_range && can_attack == true{
+		count = 4
+		image_index = 0
+		//do attack stuff
+		}
 	}
 
 
-}
 
 
 

@@ -1,4 +1,6 @@
 sprite_index = asset_get_index($"{_struct_unit.unit}{global.unit_animation[count]}")
+shader_set(sh_shadow);
+gpu_set_texfilter(false);
 
 if show_link && _alpha = 1 {
 	draw_line_width(
@@ -32,4 +34,7 @@ draw_set_colour(c_red)
 draw_circle(_ping_x,_ping_y,5,false)
 draw_set_colour(c_white)
 draw_set_alpha(1)
+
+shader_reset();
+gpu_set_texfilter(true);
 

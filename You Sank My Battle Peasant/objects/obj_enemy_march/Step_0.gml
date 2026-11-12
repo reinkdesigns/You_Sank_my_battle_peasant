@@ -30,22 +30,22 @@ var move_y = 0;
 
 // 2. Only calculate movement if we haven't arrived yet
 if (_distance > 0) {
-    // Get the exact, fluid angle (0 to 360 degrees) to the destination
-    var _angle = point_direction(x, y, dest_x, dest_y);
-    
-    // lengthdir splits your speed perfectly based on the angle (no diagonal modifier needed!)
-    move_x = lengthdir_x(1, _angle);
-    move_y = lengthdir_y(1, _angle);
+	// Get the exact, fluid angle (0 to 360 degrees) to the destination
+	var _angle = point_direction(x, y, dest_x, dest_y);
+	
+	// lengthdir splits your speed perfectly based on the angle (no diagonal modifier needed!)
+	move_x = lengthdir_x(1, _angle);
+	move_y = lengthdir_y(1, _angle);
 }
 
 // 3. Jitter Prevention & Movement
 // If we are closer than our movement speed, snap to target. Otherwise, move.
 if (_distance <= _speed) {
-    x = dest_x;
-    y = dest_y;
+	x = dest_x;
+	y = dest_y;
 } else {
-    x += move_x * _speed;
-    y += move_y * _speed;
+	x += move_x * _speed;
+	y += move_y * _speed;
 }
 
 // 4. Spacebar Random Destination Selection
@@ -74,15 +74,6 @@ if moved{
 	_x_last = _x
 
 
-if keyboard_check_pressed(ord("1")) count = 2
-if keyboard_check_pressed(ord("2")) {
-	count = 3
-	child_unit.count = 3
-}
-
-if keyboard_check_pressed(ord("Q")) count = 4
-if keyboard_check_pressed(ord("E")) count = 5
-if keyboard_check_pressed(ord("R")) monster = (monster+1) mod array_length(global.unit_type)
 
 if count !=3 image_speed = 0.5
 
@@ -98,7 +89,7 @@ last_count = count
 
 if _alpha < 1 && global.blind == false && count !=3  _alpha += 0.1
 
-if _alpha > 0 && global.blind == true && count !=3  _alpha -= 0.1
+if _alpha > 0.20 && global.blind == true && count !=3  _alpha -= 0.1
 
 
 if count != 0 busy = true

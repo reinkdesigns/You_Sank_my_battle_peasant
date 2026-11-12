@@ -63,24 +63,24 @@ draw_set_colour(c_white)
 
 
 if (measuring) {
-    // Draw the ruler line
-    draw_set_color(c_white);
-    draw_line_width(start_x, start_y, end_x, end_y, 2);
+	// Draw the ruler line
+	draw_set_color(c_white);
+	draw_line_width(start_x, start_y, end_x, end_y, 2);
 
-    // Calculate the center of the line
-    var _mid_x = (start_x + end_x) * 0.5;
-    var _mid_y = (start_y + end_y) * 0.5;
+	// Calculate the center of the line
+	var _mid_x = (start_x + end_x) * 0.5;
+	var _mid_y = (start_y + end_y) * 0.5;
 
-    // Draw the distance at the center
+	// Draw the distance at the center
 
 
-    draw_text(
-        _mid_x,
-        _mid_y - 12,
-        string(round(distance))
-    );
+	draw_text(
+		_mid_x,
+		_mid_y - 12,
+		string(round(distance))
+	);
 
-    // Reset drawing alignment
+	// Reset drawing alignment
 
 }
 
