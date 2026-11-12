@@ -29,3 +29,53 @@ Summon Zombie, picks a location at random and summons a zombie
 
 square
 quake, but square, causes a quake but square
+
+
+
+
+
+
+
+
+
+
+
+
+#macro flesh		0
+#macro cloth		1
+#macro mail			2
+#macro plate		3
+
+#macro slime		0
+#macro bone			1
+#macro stone		2
+#macro scale		3
+
+#macro demon_flesh	2
+#macro demon_cloth	3
+#macro demon_mail	4
+#macro demon_plate	5
+
+
+#macro orc_flesh	1
+#macro orc_cloth	2
+#macro orc_mail		3
+#macro orc_plate	4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

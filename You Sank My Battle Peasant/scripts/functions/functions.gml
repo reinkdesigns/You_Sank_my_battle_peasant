@@ -399,29 +399,37 @@ function cast_line(_x1, _y1, _x2, _y2, _thickness, _range)
 }
 
 function warp_line(
-				_x1,
-				_y1,
-				_x2,
-				_y2,
-				_thickness,
-				_range,
-				_wild_magic,
-				_final = true, _wind_shunt = global.w_str){
-					
+    _x1,
+    _y1,
+    _x2,
+    _y2,
+    _thickness,
+    _range,
+    _wild_magic,
+    _final = true,
+    _wind_shunt = global.w_str
+){
     var _place_w = global.spell_field.x2 - global.spell_field.x1;
     var _place_h = global.spell_field.y2 - global.spell_field.y1;
     var _target_w = global.enemy_field.x2 - global.enemy_field.x1;
     var _target_h = global.enemy_field.y2 - global.enemy_field.y1;
 
-    // Normalize endpoints to the spell field.
+    // Get original angle and rebuild endpoint using range.
+    var _angle = point_direction(_x1, _y1, _x2, _y2);
+
+    _x2 = _x1 + lengthdir_x(_range, _angle);
+    _y2 = _y1 + lengthdir_y(_range, _angle);
+
+    // Normalize both endpoints.
     var _u1 = (_x1 - global.spell_field.x1) / _place_w;
     var _v1 = (_y1 - global.spell_field.y1) / _place_h;
+
     var _u2 = (_x2 - global.spell_field.x1) / _place_w;
     var _v2 = (_y2 - global.spell_field.y1) / _place_h;
 
     var _temp;
 
-    // Transform endpoints.
+    // Transform both endpoints using field coordinates.
     switch (_wild_magic)
     {
         case wild_magic.horz_mirror:
@@ -462,58 +470,54 @@ function warp_line(
             break;
     }
 
-    // Calculate transformed center.
-    var _center_u = (_u1 + _u2) * reduce;
-    var _center_v = (_v1 + _v2) * reduce;
+    // Apply directional scaling around the transformed origin.
+    var _dx = _u2 - _u1;
+    var _dy = _v2 - _v1;
 
-    var _scale_x = 1;
-    var _scale_y = 1;
     var _thickness_scale = 1;
     var _range_scale = 1;
 
     switch (_wild_magic)
     {
         case wild_magic.horz_squish:
-            _scale_x = reduce;
+            _dx *= reduce;
             _thickness_scale = reduce;
             break;
 
         case wild_magic.vert_squish:
-            _scale_y = reduce;
+            _dy *= reduce;
             _range_scale = reduce;
             break;
 
         case wild_magic.horz_stretch:
-            _scale_x = increase;
+            _dx *= increase;
             _thickness_scale = increase;
             break;
 
         case wild_magic.vert_stretch:
-            _scale_y = increase;
+            _dy *= increase;
             _range_scale = increase;
             break;
 
         case wild_magic.shrink:
-            _scale_x = reduce;
-            _scale_y = reduce;
+            _dx *= reduce;
+            _dy *= reduce;
             _thickness_scale = reduce;
             _range_scale = reduce;
             break;
 
         case wild_magic.enlarge:
-            _scale_x = increase;
-            _scale_y = increase;
+            _dx *= increase;
+            _dy *= increase;
             _thickness_scale = increase;
             _range_scale = increase;
             break;
     }
 
-    // Scale endpoints around the center.
-    _u1 = _center_u + (_u1 - _center_u) * _scale_x;
-    _v1 = _center_v + (_v1 - _center_v) * _scale_y;
-    _u2 = _center_u + (_u2 - _center_u) * _scale_x;
-    _v2 = _center_v + (_v2 - _center_v) * _scale_y;
+    _u2 = _u1 + _dx;
+    _v2 = _v1 + _dy;
 
+    // Map coordinates to destination field.
     var _result_x1;
     var _result_y1;
     var _result_x2;
@@ -521,132 +525,63 @@ function warp_line(
 
     if (_final)
     {
-        // Final pass: map endpoints to enemy field.
         _result_x1 = global.enemy_field.x1 + _u1 * _target_w;
         _result_y1 = global.enemy_field.y1 + _v1 * _target_h;
+
         _result_x2 = global.enemy_field.x1 + _u2 * _target_w;
         _result_y2 = global.enemy_field.y1 + _v2 * _target_h;
     }
     else
     {
-        // Intermediate pass: keep endpoints in spell field.
         _result_x1 = global.spell_field.x1 + _u1 * _place_w;
         _result_y1 = global.spell_field.y1 + _v1 * _place_h;
+
         _result_x2 = global.spell_field.x1 + _u2 * _place_w;
         _result_y2 = global.spell_field.y1 + _v2 * _place_h;
     }
 
-    var _result_thickness = _thickness * _thickness_scale;
-    var _result_range = _range * _range_scale;
-	if _wild_magic mod 2 == 0 _wind_shunt= _wind_shunt*diag_mod //if wild magic is even, if its a wind the wind is a diagonal movement, so reduce it by diagmod
     // Apply wind to both endpoints.
+    if (_wild_magic mod 2 == 0)
+        _wind_shunt *= diag_mod;
+
+    var _wind_x = 0;
+    var _wind_y = 0;
+
     switch (_wild_magic)
     {
-        case wild_magic.wind_N:
-            _result_y1 -= _wind_shunt;
-            _result_y2 -= _wind_shunt;
-            break;
-
-        case wild_magic.wind_NE:
-            _result_x1 += _wind_shunt;
-            _result_y1 -= _wind_shunt;
-            _result_x2 += _wind_shunt;
-            _result_y2 -= _wind_shunt;
-            break;
-
-        case wild_magic.wind_E:
-            _result_x1 += _wind_shunt;
-            _result_x2 += _wind_shunt;
-            break;
-
-        case wild_magic.wind_SE:
-            _result_x1 += _wind_shunt;
-            _result_y1 += _wind_shunt;
-            _result_x2 += _wind_shunt;
-            _result_y2 += _wind_shunt;
-            break;
-
-        case wild_magic.wind_S:
-            _result_y1 += _wind_shunt;
-            _result_y2 += _wind_shunt;
-            break;
-
-        case wild_magic.wind_SW:
-            _result_x1 -= _wind_shunt;
-            _result_y1 += _wind_shunt;
-            _result_x2 -= _wind_shunt;
-            _result_y2 += _wind_shunt;
-            break;
-
-        case wild_magic.wind_W:
-            _result_x1 -= _wind_shunt;
-            _result_x2 -= _wind_shunt;
-            break;
-
-        case wild_magic.wind_NW:
-            _result_x1 -= _wind_shunt;
-            _result_y1 -= _wind_shunt;
-            _result_x2 -= _wind_shunt;
-            _result_y2 -= _wind_shunt;
-            break;
+        case wild_magic.wind_N:  _wind_y = -1; break;
+        case wild_magic.wind_NE: _wind_x = 1; _wind_y = -1; break;
+        case wild_magic.wind_E:  _wind_x = 1; break;
+        case wild_magic.wind_SE: _wind_x = 1; _wind_y = 1; break;
+        case wild_magic.wind_S:  _wind_y = 1; break;
+        case wild_magic.wind_SW: _wind_x = -1; _wind_y = 1; break;
+        case wild_magic.wind_W:  _wind_x = -1; break;
+        case wild_magic.wind_NW: _wind_x = -1; _wind_y = -1; break;
     }
+
+    _result_x1 += _wind_x * _wind_shunt;
+    _result_y1 += _wind_y * _wind_shunt;
+
+    _result_x2 += _wind_x * _wind_shunt;
+    _result_y2 += _wind_y * _wind_shunt;
+
+    // Calculate actual resulting range.
+    var _result_range = point_distance(
+        _result_x1, _result_y1,
+        _result_x2, _result_y2
+    );
 
     return [
         _result_x1,
         _result_y1,
         _result_x2,
         _result_y2,
-        _result_thickness,
+        _thickness * _thickness_scale,
         _result_range
     ];
 }
 
-//function line_attack_hits(_x1, _y1, _x2, _y2, _thickness, _units)
-//{
-//    var _hits = ds_list_create();
 
-//    var _dx = _x2 - _x1;
-//    var _dy = _y2 - _y1;
-//    var _length_sq = _dx * _dx + _dy * _dy;
-
-//    var _count = ds_list_size(_units);
-
-//    for (var i = 0; i < _count; i++)
-//    {
-//        var _unit = _units[| i];
-
-//        if (!instance_exists(_unit))
-//            continue;
-
-//        var _ux = _unit.x - _x1;
-//        var _uy = _unit.y - _y1;
-
-//        var _t = 0;
-
-//        if (_length_sq > 0)
-//        {
-//            _t = clamp(
-//                (_ux * _dx + _uy * _dy) / _length_sq,
-//                0,
-//                1
-//            );
-//        }
-
-//        var _closest_x = _x1 + _t * _dx;
-//        var _closest_y = _y1 + _t * _dy;
-
-//        var _dist_x = _unit.x - _closest_x;
-//        var _dist_y = _unit.y - _closest_y;
-
-//        if (_dist_x * _dist_x + _dist_y * _dist_y
-//            <= _thickness * _thickness)
-//        {
-//            ds_list_add(_hits, _unit);
-//        }
-//    }
-
-//    return _hits;
-//}
 
 function summon_unit(_unit){
 	global.game_start = true

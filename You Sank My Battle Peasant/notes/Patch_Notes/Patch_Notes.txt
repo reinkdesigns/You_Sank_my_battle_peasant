@@ -1,3 +1,7 @@
+00.0000.0012
+added armor and mitigation
+cleaned up line attack translation
+
 00.0000.0011
 Pluged spells into a hitbox
 push damage to units

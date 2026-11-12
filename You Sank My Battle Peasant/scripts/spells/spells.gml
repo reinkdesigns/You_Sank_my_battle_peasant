@@ -3,11 +3,16 @@
 set_spells()
 global.base_deck = [
 global.spell.line_spell,
-global.spell.small_square_spell,
-global.spell.small_AOE_spell,
-global.spell.large_AOE_spell,
-//global.spell.summon_spell,
-global.spell.large_square_spell
+global.spell.line_spell,
+global.spell.line_spell,
+global.spell.line_spell,
+global.spell.line_spell,
+global.spell.line_spell,
+//global.spell.small_square_spell,
+//global.spell.small_AOE_spell,
+//global.spell.large_AOE_spell,
+////global.spell.summon_spell,
+//global.spell.large_square_spell
 ]
 
 global.rm_layer = "Unit_Field"

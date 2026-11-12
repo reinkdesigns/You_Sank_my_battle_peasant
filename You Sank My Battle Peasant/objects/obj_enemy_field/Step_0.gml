@@ -5,14 +5,14 @@ show_link = false
 if position_meeting(mouse_x, mouse_y, id) show_link = true
 
 
-// 1. Check total distance to destination
+
 var _distance = point_distance(x, y, dest_x, dest_y);
 
-// Initialize movement tracking
+
 var move_x = 0;
 var move_y = 0;
 
-// 2. Only calculate movement if we haven't arrived yet
+
 if (_distance > 0) {
     // Get the exact, fluid angle (0 to 360 degrees) to the destination
     var _angle = point_direction(x, y, dest_x, dest_y);
@@ -22,7 +22,7 @@ if (_distance > 0) {
     move_y = lengthdir_y(1, _angle);
 }
 
-// 3. Jitter Prevention & Movement
+
 // If we are closer than our movement speed, snap to target. Otherwise, move.
 if (_distance <= _speed) {
     x = dest_x;
@@ -32,7 +32,7 @@ if (_distance <= _speed) {
     y += move_y * _speed;
 }
 
-// 4. Spacebar Random Destination Selection
+
 
 
 _x = x
@@ -60,6 +60,18 @@ last_count = count
 
 
 }
+
+if take_damage{
+	var damage_taken = mitigate(take_damage)
+	if damage_taken >0 {
+		count = 2;
+        parent_unit.count = 2;
+        parent_unit._hp -= damage_taken;
+	}
+	take_damage = 0
+}
+
+     
 
 
 if _alpha < 1 && global.blind = false _alpha += 0.1
