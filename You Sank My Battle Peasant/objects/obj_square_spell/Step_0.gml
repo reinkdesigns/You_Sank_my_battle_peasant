@@ -25,9 +25,7 @@ for (var i = 0; i < ds_list_size(candidates); i++) {
 
     if (_unit != noone && !array_contains(was_hit, _unit)) {
         array_insert(was_hit, 0, _unit);
-        _unit.count = 2;
-        _unit.parent_unit.count = 2;
-		_unit.parent_unit._hp -= damage;
+        _unit.take_damage = damage
     }
 }
 
